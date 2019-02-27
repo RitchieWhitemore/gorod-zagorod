@@ -4,6 +4,9 @@
   "description": "Стартовый репозиторий",
   "main": "gulpfile.js",
   "dependencies": {
+    "@polymer/paper-dropdown-menu": "^3.0.1",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.7",
     "del": "^3.0.0",
@@ -11,7 +14,9 @@
     "gulp-copy": "^4.0.1",
     "gulp-less": "^3.3.2",
     "gulp-run": "^1.7.1",
-    "normalize.less": "^1.0.0"
+    "normalize.less": "^1.0.0",
+    "paper-range-slider": "^3.0.0",
+    "web-animations-js": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
@@ -28,7 +33,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "gulp serve"
+    "run": "gulp serve",
+    "polymer-build-frontend": "gulp polymer-build-frontend",
+    "polymer-build-backend": "gulp polymer-build-backend"
   },
   "author": "",
   "license": "ISC"

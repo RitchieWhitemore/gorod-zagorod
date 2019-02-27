@@ -1,11 +1,13 @@
 {
   "npm": true,
   "moduleResolution": "node",
+  "entrypoint": "src/index.html",
   "sources": [
     "src/components/**"
   ],
   "extraDependencies": [
-    "node_modules/@webcomponents/webcomponentsjs/**"
+    "node_modules/@webcomponents/webcomponentsjs/**",
+    "node_modules/web-animations-js/*.js"
   ],
   "builds": [{
     "name": "prod",

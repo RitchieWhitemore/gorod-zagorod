@@ -4,9 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная страница</title>
-    <link href="css/style.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="/node_modules/web-animations-js/web-animations-next.min.js"></script>
+    <script type="module">
+        import '../node_modules/@polymer/paper-dropdown-menu/paper-dropdown-menu.js';
+        import '../node_modules/@polymer/paper-item/paper-item.js';
+        import '../node_modules/@polymer/paper-listbox/paper-listbox.js';
+        import "../node_modules/paper-range-slider/paper-range-slider.js";
+    </script>
 </head>
 <body>
-
+<header>
+    <div class="page-header__top-row">
+        <span class="page-header__phone">+7 (800) 123-45-67</span>
+        <span class="page-header__address">г. Александров, ул. Красный переулок, д. 10, офис 5</span>
+    </div>
+    <div class="page-header__wrapper">
+        <div class="page-header__logo"><span>агенство недвижимости</span>город <b>загород</b></div>
+        <nav class="page-header__menu page-header-menu">
+            Меню
+            <ul>
+                <a href="index.html" class="header-menu__link">
+                    <li>Главная</li>
+                </a>
+                <a href="#" class="header-menu__link">
+                    <li>Объявления</li>
+                </a>
+                <a href="#" class="header-menu__link">
+                    <li>О компании</li>
+                </a>
+                <a href="#" class="header-menu__link">
+                    <li>Контакты</li>
+                </a>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section class="heading-main__wrapper">
+    <h1>Найдем ваш новый дом из тысячи и продадим старый</h1>
+</section>
+<section class="form-search">
+    <form>
+        <div class="form-search__group">
+            <label><input type="radio" name="type" value="buy">Купить</label>
+            <label><input type="radio" name="type" value="sale">Продать</label>
+            <label><input type="radio" name="type" value="rent">Снять</label>
+        </div>
+        <div class="form-search__group">
+            <label for="cityField">Место нахождения</label>
+            <input id="cityField" type="text" name="city" placeholder="Наберите город...">
+        </div>
+        <div class="form-search__group">
+            <paper-dropdown-menu label="Недвижимость">
+                <paper-listbox slot="dropdown-content" class="dropdown-content">
+                    <paper-item>Комната</paper-item>
+                    <paper-item>Квартира</paper-item>
+                    <paper-item>Дом</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+        </div>
+        <div class="form-search__group">
+            <label>Площадь</label>
+            <paper-range-slider></paper-range-slider>
+        </div>
+        <div class="form-search__group">
+            <label>Стоимость</label>
+            <paper-range-slider></paper-range-slider>
+        </div>
+        <button type="submit">Найти</button>
+    </form>
+</section>
+<section class="popular-property">
+    <h2 class="popular-property__title">Новые объявления</h2>
+    <div class="popular-property__list">
+        <div class="popular-property__item property-item">
+            <div class="property-item__image-wrapper">
+                <img src="images/property1.jpg">
+                <span class="property-item__label">Продается</span>
+            </div>
+            <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
+            <p class="property-item__category">3-х комнатная квартира</p>
+            <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние нормальное,
+                жилое. + комнаты изолированные + большая кухня + санузел раздельный + счетчики установлены + большая
+                лоджия +... </p>
+            <footer class="property-item__footer">
+                <span class="property-item__area">95 м2</span>
+                <span class="property-item__price">1 200 000 P</span>
+            </footer>
+        </div>
+    </div>
+</section>
+<section class="contact">
+    <h2 class="contact__title"></h2>
+    <div class="conpact__map"></div>
+    <div class="contact__info">
+        <p class="contact__address">Владимирская область, г. Александров, ул. Красный переулок, д. 10А</p>
+        <p class="contact__email">info@gorod-zagorod.ru</p>
+        <p class="contact__phone">+7 (789) 123-45-78</p>
+    </div>
+</section>
+<footer class="page-footer">
+    <nav class="page-footer__menu footer-menu">
+        <ul>
+            <a href="index.html" class="footer-menu__link">
+                <li>Главная</li>
+            </a>
+            <a href="#" class="footer-menu__link">
+                <li>Объявления</li>
+            </a>
+            <a href="#" class="footer-menu__link">
+                <li>
+                    О Компании
+                </li>
+            </a>
+            <a href="#" class="footer-menu__link">
+                <li>
+                    Контакты
+                </li>
+            </a>
+        </ul>
+    </nav>
+    <div class="page-footer__row">
+        <span class="page-footer__company">Агентство Недвижимости "Город Загород"</span>
+        <span class="page-footer__right">©2019 Все права защищены</span>
+    </div>
+</footer>
 </body>
 </html>
