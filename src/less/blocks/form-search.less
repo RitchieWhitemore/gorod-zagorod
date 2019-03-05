@@ -88,7 +88,8 @@
     display: none;
   }
 
-  & input:checked + span {
+  & input:checked + span,
+  & input:hover + span  {
     content: "";
     display: block;
     width: 100%;
@@ -97,7 +98,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
+  }
 
+  & input:hover + span {
+    opacity: 0.3;
   }
 }
 
@@ -184,6 +188,15 @@
   font-size: 20px;
   color: white;
   text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
 
   @media @tablet-widths {
     width: 250px;
