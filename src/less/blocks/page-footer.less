@@ -1,0 +1,33 @@
+.page-footer {
+  background-color: @bg-black;
+  padding: 20px 35px;
+}
+
+.page-footer__wrapper {
+
+
+  @media @tablet-widths {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
+.page-footer__menu {
+  margin-bottom: 20px;
+
+  @media @tablet-widths {
+    margin: 0;
+  }
+
+  @media @desktop-widths {
+    width: 400px;
+  }
+}
+
+.page-footer__company,
+.page-footer__right{
+  display: block;
+  margin-bottom: 10px;
+  color: @text-light-grey;
+}

@@ -1,0 +1,196 @@
+.form-search {
+  margin-bottom: 40px;
+  background-color: @bg-blue;
+
+  @media @tablet-widths {
+    position: relative;
+    padding-top: 20px;
+  }
+}
+
+.form-search form {
+  padding: 0 35px;
+
+  @media @tablet-widths {
+    padding-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @media @desktop-large-widths {
+    padding: 0;
+    padding-top: 25px;
+  }
+}
+
+.form-search__group {
+  margin-bottom: 30px;
+
+  @media @tablet-widths {
+    width: 50%;
+    box-sizing: border-box;
+  }
+}
+
+.form-search__group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 15px;
+  color: white;
+
+  @media @desktop-widths {
+    font-size: 20px;
+  }
+}
+
+.form-search__property-type-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  @media @tablet-widths {
+    padding: 0;
+    position: absolute;
+    top: -58px;
+    left: 35px;
+    background-color: @bg-blue;
+  }
+
+  @media @desktop-widths {
+    left: auto;
+  }
+}
+
+.form-search__property-type {
+  margin-bottom: 30px;
+  display: block;
+  padding: 7px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  position: relative;
+  font-size: 12px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: white;
+
+  @media @tablet-widths {
+    margin: 0;
+    padding: 20px 40px;
+    padding-top: 23px;
+    font-size: 14px;
+  }
+
+  @media @desktop-widths {
+    font-size: 18px;
+  }
+
+  & input {
+    display: none;
+  }
+
+  & input:checked + span {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+  }
+}
+
+.form-search__input {
+  padding: 13px;
+  display: block;
+  border: 1px solid white;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 13px;
+  line-height: 13px;
+  color: white;
+  outline: none;
+
+  @media @desktop-widths {
+    font-size: 16px;
+  }
+
+  & option {
+    background-color: white;
+    color: black;
+    font-size: 13px;
+  }
+}
+
+.form-search__city-wrapper {
+  color: white;
+
+  @media @tablet-widths {
+    padding-right: 20px;
+    width: 50%;
+  }
+
+  & input {
+    padding-left: 30px;
+    background-image: url("img/pen.svg");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+  }
+
+  & input::placeholder {
+    font-size: 13px;
+    color: white;
+
+    @media @desktop-widths {
+      font-size: 16px;
+    }
+  }
+}
+
+.form-search__property-wrapper {
+
+  @media @tablet-widths {
+    padding: 0;
+  }
+
+  & select {
+    @media @tablet-widths {
+      padding: 12px 13px;
+    }
+  }
+}
+
+.form-search__range {
+  color: white;
+}
+
+.form-search__range-result {
+  font-size: 14px;
+  color: white;
+
+  @media @desktop-widths {
+    font-size: 16px;
+  }
+}
+
+.form-search__button-search {
+  padding: 13px;
+  width: 100%;
+  background-color: @bg-orange;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+
+  @media @tablet-widths {
+    width: 250px;
+    margin: 0 auto;
+  }
+
+  @media @desktop-widths {
+    font-size: 24px;
+  }
+}

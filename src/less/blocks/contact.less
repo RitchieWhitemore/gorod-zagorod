@@ -1,0 +1,86 @@
+.contact__map {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.contact__iframe {
+  width: 100%;
+  height: 260px;
+
+  @media @tablet-widths {
+    height: 400px;
+  }
+}
+
+.contact__info-wrapper {
+  padding: 0 35px;
+  padding-top: 30px;
+
+  @media @tablet-widths {
+    padding: 0;
+  }
+}
+
+.contact__info {
+  padding: 10px;
+  padding-top: 15px;
+  padding-bottom: 130px;
+  border: 1px solid @border-grey;
+  background-image: url("img/photo-yandex-map.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom 10px;
+  background-color: white;
+
+  @media @tablet-widths {
+    position: absolute;
+    width: 265px;
+    top: 50px;
+    right: 50px;
+  }
+
+  @media @desktop-widths {
+    right: 30%;
+  }
+}
+
+.contact__address,
+.contact__email,
+.contact__phone {
+  padding-left: 35px;
+  font-size: 14px;
+  color: @text-grey;
+  position: relative;
+
+  @media @tablet-widths {
+    font-size: 16px;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+.contact__address::before {
+  top: 0px;
+  width: 24px;
+  height: 32px;
+  background-image: url("img/pin.svg");
+}
+
+.contact__email::before {
+  width: 24px;
+  height: 18px;
+  background-image: url("img/envelope.svg");
+}
+
+.contact__phone::before {
+  top: -1px;
+  width: 19px;
+  height: 19px;
+  background-image: url("img/phone-grey.svg");
+}

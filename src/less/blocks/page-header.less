@@ -1,0 +1,130 @@
+.page-header {
+  background-color: @bg-black;
+}
+
+.page-header__top-row {
+  padding: 10px 35px;
+  color: @text-light-grey;
+  border-bottom: 1px solid @border-grey;
+
+  @media @tablet-widths {
+    padding: 15px 35px;
+  }
+
+  @media @desktop-widths {
+    padding: 20px 35px;
+  }
+
+  &-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.page-header__phone {
+  position: relative;
+  padding-left: 15px;
+  font-size: 10px;
+  line-height: 11px;
+
+  @media @tablet-widths {
+    padding-left: 22px;
+    font-size: 16px;
+  }
+
+  @media @desktop-widths {
+    font-size: 20px;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    background-image: url("img/phone.svg");
+    background-repeat: no-repeat;
+    background-size: 9px;
+
+    @media @tablet-widths {
+      top: -1px;
+      width: 15px;
+      height: 15px;
+      background-size: cover;
+    }
+
+    @media @desktop-widths {
+      top: -3px;
+      width: 17px;
+      height: 17px;
+    }
+  }
+}
+
+.page-header__address {
+  font-size: 8px;
+  line-height: 12px;
+  text-align: right;
+  width: 110px;
+
+  @media @tablet-widths {
+    font-size: 14px;
+    width: 50%;
+  }
+  @media @desktop-widths {
+    font-size: 18px;
+  }
+}
+
+.page-header__wrapper {
+  padding: 8px 35px;
+
+  @media @tablet-widths {
+    padding: 12px 35px;
+  }
+
+  @media @desktop-widths {
+    padding: 16px 35px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media @desktop-large-widths {
+    padding: 16px 0;
+  }
+}
+
+.page-header__logo {
+  color: white;
+  width: 50%;
+  text-transform: uppercase;
+
+  @media @tablet-widths {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  @media @desktop-widths {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  & span {
+    display: block;
+    font-size: 5px;
+    text-transform: lowercase;
+
+    @media @tablet-widths {
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    @media @desktop-widths {
+      font-size: 16px;
+      line-height: 16px ;
+    }
+  }
+}
