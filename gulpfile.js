@@ -9,6 +9,7 @@ var cssmin = require('gulp-cssmin');
 var rename = require("gulp-rename");
 var runCmd = require('gulp-run');
 var del = require('del');
+var rigger = require('gulp-rigger');
 
 var server = require("browser-sync");
 var run = require("run-sequence");
@@ -36,6 +37,12 @@ gulp.task("style", function() {
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest("src/css"))
         .pipe(server.reload({stream: true}));
+});
+
+gulp.task("html-build", function () {
+    gulp.src("src/pages/*.html")
+        .pipe(rigger())
+        .pipe(gulp.dest('src/'));
 });
 
 gulp.task("admin-style", function() {
@@ -120,7 +127,7 @@ gulp.task("serve", ["style"], function() {
         server: "./src"
     });
     gulp.watch("src/less/**/*.less", ["style"]);
-    gulp.watch("src/*.html")
+    gulp.watch("src/pages/**/*.html", ["html-build"])
         .on("change", server.reload);
 });
 
