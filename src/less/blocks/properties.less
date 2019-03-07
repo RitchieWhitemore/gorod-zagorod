@@ -1,0 +1,123 @@
+.properties {
+  padding: 0 35px;
+
+  @media @desktop-widths {
+    padding: 0;
+  }
+}
+
+.properties__header {
+  @media @tablet-widths {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.properties__title {
+  margin: 0;
+  margin-bottom: 28px;
+  font-size: 16px;
+  font-weight: 400;
+
+  @media @tablet-widths {
+    width: 50%;
+  }
+}
+
+.properties__request {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.properties__view-wrapper {
+  display: none;
+  @media @tablet-widths {
+    display: block;
+
+    font-size: 16px;
+  }
+}
+
+.properties__view-button {
+  padding-left: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: left center;
+  cursor: pointer;
+
+  &--list {
+    background-image: url("img/align-justify-black.svg");
+  }
+
+  &--list-active {
+    background-image: url("img/align-justify-orange.svg");
+    color: @text-orange;
+  }
+
+  &--table {
+    padding-left: 25px;
+    background-image: url("img/grid-black.svg");
+  }
+
+  &--table-active {
+    padding-left: 25px;
+    background-image: url("img/grid-orange.svg");
+    color: @text-orange;
+  }
+}
+
+.properties__control-wrapper {
+  @media @tablet-widths {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.properties__select-wrapper {
+  font-size: 14px;
+}
+
+.properties__select {
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  color: @text-orange;
+}
+
+.properties__list {
+  @media @tablet-widths {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.properties__list--list {
+  @media @tablet-widths {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.properties__item {
+  margin-bottom: 30px;
+  @media @tablet-widths {
+
+    width: 48%;
+    box-sizing: border-box;
+  }
+
+  @media @desktop-widths {
+    width: 24%;
+  }
+}
+
+.properties__list--list .properties__item {
+  @media @tablet-widths {
+    width: 100%;
+  }
+}
