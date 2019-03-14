@@ -1,0 +1,156 @@
+.page-property {
+  @media @desktop-widths {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.page-property__row {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.page-property__content-wrapper {
+  @media @desktop-widths {
+    width: 75%;
+  }
+
+}
+
+.page-property__content {
+  padding: 0 35px;
+
+  @media @desktop-widths {
+    padding: 0;
+    padding-left: 35px;
+  }
+
+  @media @desktop-large-widths {
+    padding: 0;
+  }
+}
+
+.page-property__image-gallery {
+  border-bottom: 1px solid @border-grey;
+}
+
+.page-property__title {
+  font-size: 16px;
+  font-weight: normal;
+
+  @media @tablet-widths {
+    font-size: 26px;
+  }
+}
+
+.page-property__address {
+  margin: 0;
+  padding-left: 15px;
+  font-size: 12px;
+  line-height: 16px;
+  color: @text-blue;
+  background-image: url("img/pin-address.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  width: 50%;
+
+  @media @tablet-widths {
+    padding-left: 20px;
+    font-size: 18px;
+    line-height: 20px;
+    background-position: left top;
+    background-size: 13px;
+  }
+}
+
+.page-property__price {
+  display: inline-block;
+  text-align: right;
+  margin-bottom: 15px;
+  margin-left: auto;
+  color: @text-orange;
+  width: 40%;
+
+  @media @tablet-widths {
+    font-size: 20px;
+  }
+}
+
+.page-property__table {
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+
+  & th {
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: @text-grey;
+
+    @media @tablet-widths {
+      font-size: 16px;
+    }
+  }
+}
+
+.page-property__description {
+  font-size: 12px;
+  line-height: 16px;
+  color: @text-grey;
+
+  @media @tablet-widths {
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.page-property__map {
+  @media @desktop-widths {
+    padding-left: 35px;
+  }
+
+  @media @desktop-large-widths {
+    padding: 0;
+  }
+}
+
+.page-property__map iframe {
+  width: 100%;
+
+  @media @tablet-widths {
+    height: 200px;
+  }
+
+  @media @desktop-widths {
+    height: 300px;
+  }
+}
+
+.page-property__link {
+  color: @text-blue;
+}
+
+.page-property__aside {
+  padding: 0 35px;
+
+  @media @desktop-widths {
+    padding: 0;
+    padding-right: 35px;
+    width: 200px;
+  }
+
+  @media @desktop-large-widths {
+    padding: 0;
+    width: 250px;
+  }
+}
+
+.page-property__module {
+  width: 100%;
+
+  @media @desktop-widths {
+    order: 3;
+  }
+}

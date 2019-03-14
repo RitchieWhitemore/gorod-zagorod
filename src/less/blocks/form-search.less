@@ -10,7 +10,7 @@
 
 .form-search form {
   padding: 0 35px;
-
+  display: none;
   @media @tablet-widths {
     padding-top: 25px;
     display: flex;
@@ -21,6 +21,10 @@
     padding: 0;
     padding-top: 25px;
   }
+}
+
+.form-search--open form {
+  display: block;
 }
 
 .form-search__group {
@@ -179,31 +183,18 @@
   }
 }
 
-.form-search__button-search {
-  padding: 13px;
-  width: 100%;
-  background-color: @bg-orange;
-  border: none;
-  outline: none;
-  font-size: 20px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    opacity: 0.5;
-  }
+.form-search__button-toggle {
+  background-color: @bg-blue;
 
   @media @tablet-widths {
-    width: 250px;
-    margin: 0 auto;
+    display: none;
   }
+}
 
-  @media @desktop-widths {
-    font-size: 24px;
-  }
+.form-search--open .form-search__button-toggle {
+  background-color: @bg-orange;
+}
+
+.form-search__button-search {
+  background-color: @bg-orange;
 }

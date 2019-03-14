@@ -34,3 +34,31 @@ img {
 .user-default-signup {
     width: 100%;
 }
+
+.btn {
+    padding: 13px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:active {
+        opacity: 0.5;
+    }
+
+    @media @tablet-widths {
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    @media @desktop-widths {
+        font-size: 24px;
+    }
+}
