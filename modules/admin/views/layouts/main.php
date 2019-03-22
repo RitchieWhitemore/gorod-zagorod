@@ -44,8 +44,8 @@ AppAsset::register($this);
                  ['label' => 'Типы локаций', 'url' => ['/admin/type-locations/index']],
                  ['label' => 'Локации', 'url' => ['/admin/locations/index']],
              ],
-
             ],
+            ['label' => 'Объявления', 'url' => ['/admin/adverts/index']],
         ]
     ]);
     NavBar::end();

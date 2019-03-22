@@ -47,9 +47,9 @@ class Advert extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'type_id' => Yii::t('app', 'Type'),
+            'type_id' => 'Тип объявления',
             'property_id' => Yii::t('app', 'Property Type'),
-            'location_id' => Yii::t('app', 'Location ID'),
+            'location_id' => 'Локация',
             'price' => Yii::t('app', 'Price'),
             'description' => Yii::t('app', 'Description'),
             'coordinates' => Yii::t('app', 'Coordinates'),
