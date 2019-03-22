@@ -8,7 +8,7 @@ return [
     'NAV_LOGIN'   => 'Login',
     'NAV_LOGOUT'  => 'Logout',
 
-    'BUTTON_SUBMIT'   => 'Submit',
+    'BUTTON_SUBMIT' => 'Submit',
     'BUTTON_SAVE'   => 'Save',
     'BUTTON_UPDATE' => 'Update',
     'BUTTON_DELETE' => 'Delete',
@@ -23,4 +23,14 @@ return [
     'IGNORE_IF_DO_NOT_REGISTER' => 'If you do not register on our site just remove this mail.',
 
     'PLEASE_FILL_FIELDS_TO_LOGIN' => 'Please fill out the following fields to login',
+
+    'ID'            => 'ID',
+    'Name'          => 'Name',
+    'Type advert'   => 'Type advert',
+    'Property Type' => 'Property type',
+    'Location'      => 'Location',
+    'Price'         => 'Price',
+    'Description'   => 'Description',
+    'Coordinates'   => 'Coordinates',
+
 ];
