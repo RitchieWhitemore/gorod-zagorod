@@ -2,6 +2,7 @@
 
 $config = [
     'id' => 'app',
+    'name' => 'gorod-zagorod.com',
     'components' => [
         'user' => [
             'identityClass' => 'app\models\User',
@@ -14,6 +15,11 @@ $config = [
             'traceLevel' => YII_DEBUG ? 3 : 0,
         ],
     ],
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
@@ -22,14 +28,14 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.83.1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1', '192.168.83.1'],
     ];
 }
 
