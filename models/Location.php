@@ -11,6 +11,7 @@ use Yii;
  * @property string $name
  *
  * @property Advert[] $adverts
+ * @property TypeLocation[] $type_location_id
  */
 class Location extends \yii\db\ActiveRecord
 {
@@ -28,8 +29,9 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'type_location_id'], 'required'],
             [['name'], 'string', 'max' => 255],
+            [['type_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => TypeLocation::className(), 'targetAttribute' => ['type_location_id' => 'id']],
         ];
     }
 
@@ -41,6 +43,7 @@ class Location extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => Yii::t('app', 'Name'),
+            'type_location_id' => 'Тип локации',
         ];
     }
 
@@ -50,5 +53,13 @@ class Location extends \yii\db\ActiveRecord
     public function getAdverts()
     {
         return $this->hasMany(Advert::className(), ['location_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTypeLocation()
+    {
+        return $this->hasOne(TypeLocation::className(), ['id' => 'type_location_id']);
     }
 }
