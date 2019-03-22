@@ -8,39 +8,48 @@ $params = ArrayHelper::merge(
 );
 
 return [
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
-    'aliases' => [
+    'basePath'   => dirname(__DIR__),
+    'bootstrap'  => ['log'],
+    'aliases'    => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'db' => [
-            'class' => 'yii\db\Connection',
+        'cache'      => [
+            'class' => 'yii\caching\DummyCache',
+        ],
+        'db'         => [
+            'class'   => 'yii\db\Connection',
             'charset' => 'utf8',
         ],
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'forceTranslation' => true,
+                ],
+            ],
+        ],
+        'mailer'     => [
+            'class' => 'yii\swiftmailer\Mailer',
+        ],
+        'log'        => [
+            'class' => 'yii\log\Dispatcher',
+        ],
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'enableStrictParsing' => true,
-            'rules' => [
+            'class'               => 'yii\web\UrlManager',
+            'enablePrettyUrl'     => true,
+            'showScriptName'      => false,
+            //'enableStrictParsing' => true,
+            'rules'               => [
+                ''      => 'site/index',
                 'admin' => 'admin/default/index',
 
-                '<_c:[\w\-]+>/<id:\d+>' => '<_c>/view',
-                '<_c:[\w\-]+>' => '<_c>/index',
+                '<_c:[\w\-]+>/<id:\d+>'              => '<_c>/view',
+                '<_c:[\w\-]+>'                       => '<_c>/index',
                 '<_c:[\w\-]+>/<_a:[\w\-]+>/<id:\d+>' => '<_c>/<_a>',
             ],
         ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-        ],
-        'cache' => [
-            'class' => 'yii\caching\DummyCache',
-        ],
-        'log' => [
-            'class' => 'yii\log\Dispatcher',
-        ],
     ],
-    'params' => $params,
+    'params'     => $params,
 ];

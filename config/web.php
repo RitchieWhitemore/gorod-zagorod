@@ -2,6 +2,7 @@
 
 $config = [
     'id' => 'app',
+    'language'=>'ru-RU',
     'name' => 'gorod-zagorod.com',
     'components' => [
         'user' => [
