@@ -4,12 +4,12 @@ namespace app\modules\admin\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Advert;
+use app\models\TypeAdvert;
 
 /**
- * AdvertSearch represents the model behind the search form of `app\models\Advert`.
+ * TypeAdvertSearch represents the model behind the search form of `app\models\TypeAdvert`.
  */
-class AdvertSearch extends Advert
+class TypeAdvertSearch extends TypeAdvert
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class AdvertSearch extends Advert
     public function rules()
     {
         return [
-            [['id', 'type_advert_id', 'property_id', 'location_id', 'price'], 'integer'],
-            [['description', 'coordinates'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class AdvertSearch extends Advert
      */
     public function search($params)
     {
-        $query = Advert::find();
+        $query = TypeAdvert::find();
 
         // add conditions that should always apply here
 
@@ -59,14 +59,9 @@ class AdvertSearch extends Advert
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type_advert_id' => $this->typeAdvert,
-            'property_id' => $this->property_id,
-            'location_id' => $this->location_id,
-            'price' => $this->price,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'coordinates', $this->coordinates]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

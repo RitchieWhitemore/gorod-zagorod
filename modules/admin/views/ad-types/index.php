@@ -4,20 +4,20 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\modules\admin\models\AdvertSearch */
+/* @var $searchModel app\modules\admin\models\TypeAdvertSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Объявления';
+$this->title = 'Типы объявлений';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="advert-index">
+<div class="type-advert-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать объявление', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать тип объявлений', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -27,12 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'typeAdvert.name',
-            'property_id',
-            'location_id',
-            'price',
-            //'description:ntext',
-            //'coordinates',
+            'name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

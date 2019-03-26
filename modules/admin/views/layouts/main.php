@@ -39,13 +39,21 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items'   => [
-            ['label' => 'Управление локациями',
-             'items' => [
-                 ['label' => 'Типы локаций', 'url' => ['/admin/type-locations/index']],
-                 ['label' => 'Локации', 'url' => ['/admin/locations/index']],
-             ],
+            [
+                'label' => 'Управление локациями',
+                'items' => [
+                    ['label' => 'Типы локаций', 'url' => ['/admin/type-locations/index']],
+                    ['label' => 'Локации', 'url' => ['/admin/locations/index']],
+                ],
             ],
-            ['label' => 'Объявления', 'url' => ['/admin/adverts/index']],
+            [
+                'label' => 'Управление объявлениями',
+                'items' => [
+                    ['label' => 'Объявления', 'url' => ['/admin/adverts/index']],
+                    ['label' => 'Типы объявлений', 'url' => ['/admin/ad-types/index']],
+                ],
+            ],
+
         ]
     ]);
     NavBar::end();
