@@ -18,6 +18,7 @@ use Yii;
  * @property Location $location
  * @property TypeAdvert $typeAdvert
  * @property Property $property
+ * @property Image $images
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -82,5 +83,13 @@ class Advert extends \yii\db\ActiveRecord
     public function getProperty()
     {
         return $this->hasOne(Property::className(), ['id' => 'property_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getImages()
+    {
+        return $this->hasMany(Image::className(), ['advert_id' => 'id']);
     }
 }
