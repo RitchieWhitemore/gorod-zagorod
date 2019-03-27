@@ -42,6 +42,8 @@ return [
             'showScriptName'      => false,
             //'enableStrictParsing' => true,
             'rules'               => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/advert',],
+
                 ''      => 'site/index',
                 'admin' => 'admin/default/index',
 
