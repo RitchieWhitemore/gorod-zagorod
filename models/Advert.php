@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "advert".
  *
  * @property int $id
+ * @property int $type_advert_id
  * @property int $property_id
  * @property int $location_id
  * @property int $price
@@ -16,6 +17,7 @@ use Yii;
  *
  * @property Location $location
  * @property TypeAdvert $typeAdvert
+ * @property Property $property
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -38,6 +40,7 @@ class Advert extends \yii\db\ActiveRecord
             [['coordinates'], 'string', 'max' => 255],
             [['location_id'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['location_id' => 'id']],
             [['type_advert_id'], 'exist', 'skipOnError' => true, 'targetClass' => TypeAdvert::className(), 'targetAttribute' => ['type_advert_id' => 'id']],
+            [['property_id'], 'exist', 'skipOnError' => true, 'targetClass' => Property::className(), 'targetAttribute' => ['property_id' => 'id']],
         ];
     }
 
@@ -49,7 +52,7 @@ class Advert extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'type_advert_id' => 'Тип объявления',
-            'property_id' => Yii::t('app', 'Property Type'),
+            'property_id' => 'Недвижимость',
             'location_id' => 'Локация',
             'price' => Yii::t('app', 'Price'),
             'description' => Yii::t('app', 'Description'),
@@ -71,5 +74,13 @@ class Advert extends \yii\db\ActiveRecord
     public function getTypeAdvert()
     {
         return $this->hasOne(TypeAdvert::className(), ['id' => 'type_advert_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProperty()
+    {
+        return $this->hasOne(Property::className(), ['id' => 'property_id']);
     }
 }

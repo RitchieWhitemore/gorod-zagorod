@@ -42,7 +42,7 @@ class Location extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Name'),
+            'name' => 'Локация',
             'type_location_id' => 'Тип локации',
         ];
     }

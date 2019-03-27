@@ -3,6 +3,10 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\models\Location;
+use app\models\Property;
+use app\models\TypeAdvert;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\admin\models\AdvertSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -22,14 +26,32 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
+        'filterModel'  => $searchModel,
+        'columns'      => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'typeAdvert.name',
-            'property_id',
-            'location_id',
+            [
+                'attribute' => 'type_advert_id',
+                'content' => function ($data) {
+                    return $data->typeAdvert->name;
+                },
+                'filter' => TypeAdvert::find()->select(['name', 'id'])->indexBy('id')->column()
+            ],
+            [
+                'attribute' => 'property_id',
+                'content' => function ($data) {
+                    return $data->property->name;
+                },
+                'filter' => Property::find()->select(['name', 'id'])->indexBy('id')->column()
+            ],
+            [
+                'attribute' => 'location_id',
+                'content' => function ($data) {
+                    return $data->location->name;
+                },
+                'filter' => Location::find()->select(['name', 'id'])->indexBy('id')->column()
+            ],
             'price',
             //'description:ntext',
             //'coordinates',

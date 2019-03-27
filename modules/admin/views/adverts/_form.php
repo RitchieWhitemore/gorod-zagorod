@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\TypeAdvert;
 use app\models\Location;
+use app\models\Property;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Advert */
@@ -16,7 +17,7 @@ use app\models\Location;
 
     <?= $form->field($model, 'type_advert_id')->dropDownList(TypeAdvert::find()->select(['name', 'id'])->indexBy('id')->column())?>
 
-    <?= $form->field($model, 'property_id')->textInput() ?>
+    <?= $form->field($model, 'property_id')->dropDownList(Property::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
     <?= $form->field($model, 'location_id')->dropDownList(Location::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
