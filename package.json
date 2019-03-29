@@ -4,6 +4,8 @@
   "description": "Стартовый репозиторий",
   "main": "gulpfile.js",
   "dependencies": {
+    "@polymer/iron-ajax": "^3.0.1",
+    "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/paper-dropdown-menu": "^3.0.1",
     "@polymer/paper-item": "^3.0.1",
     "@polymer/paper-listbox": "^3.0.1",

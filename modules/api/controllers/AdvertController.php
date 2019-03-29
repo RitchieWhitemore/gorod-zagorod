@@ -22,7 +22,7 @@ class AdvertController extends ActiveController
         $actions = parent::actions();
 
         // отключить действия "delete" и "create"
-        unset($actions['delete'], $actions['create']);
+        unset($actions['delete']);
 
         // настроить подготовку провайдера данных с помощью метода "prepareDataProvider()"
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];

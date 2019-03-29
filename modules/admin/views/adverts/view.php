@@ -6,6 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Advert */
 
+
+$bundle = \app\assets\WebComponentsAsset::register($this);
+
+$this->registerJsFile("$bundle->baseUrl/image-list/image-list.js", ['type' => 'module']);
+
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Объявления', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -38,5 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'coordinates',
         ],
     ]) ?>
+
+    <image-list owner-id=<?=$model->id ?>></image-list>
 
 </div>

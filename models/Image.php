@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\behaviors\UploadImageMultipleBehavior;
 use Yii;
 
 /**
@@ -24,16 +25,29 @@ class Image extends \yii\db\ActiveRecord
         return 'image';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class'         => UploadImageMultipleBehavior::className(),
+                'fileNameField' => 'file_name',
+                'catalog'       => 'adverts',
+            ],
+        ];
+    }
+
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['file_name', 'advert_id'], 'required'],
+            [['advert_id'], 'required'],
             [['advert_id', 'main'], 'integer'],
             [['file_name'], 'string', 'max' => 255],
             [['advert_id'], 'exist', 'skipOnError' => true, 'targetClass' => Advert::className(), 'targetAttribute' => ['advert_id' => 'id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

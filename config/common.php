@@ -43,6 +43,7 @@ return [
             //'enableStrictParsing' => true,
             'rules'               => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/advert',],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/image',],
 
                 ''      => 'site/index',
                 'admin' => 'admin/default/index',
