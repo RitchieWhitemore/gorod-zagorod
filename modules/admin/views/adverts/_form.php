@@ -21,11 +21,25 @@ use app\models\Property;
 
     <?= $form->field($model, 'location_id')->dropDownList(Location::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
+    <div class="row">
+        <div class="col-sm-4">
+            <?= $form->field($model, 'street')->textInput() ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'house')->textInput() ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'apartment')->textInput() ?>
+        </div>
+    </div>
+
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'coordinates')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'status')->dropDownList($model::getStatusesArray()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

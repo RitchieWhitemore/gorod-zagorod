@@ -11,7 +11,7 @@ $bundle = \app\assets\WebComponentsAsset::register($this);
 
 $this->registerJsFile("$bundle->baseUrl/image-list/image-list.js", ['type' => 'module']);
 
-$this->title = $model->id;
+$this->title = "Объявление № {$model->id}";
 $this->params['breadcrumbs'][] = ['label' => 'Объявления', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -38,9 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'typeAdvert.name',
             'property.name',
             'location.name',
+            'street',
+            'house',
+            'apartment',
             'price',
-            'description:ntext',
-            'coordinates',
+            [
+            'attribute' => 'status',
+            'label' => 'Статус',
+            'value' => $model->getStatusName(),
+],
+
         ],
     ]) ?>
 

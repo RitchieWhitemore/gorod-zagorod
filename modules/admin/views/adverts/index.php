@@ -1,5 +1,7 @@
 <?php
 
+use app\components\grid\SetColumn;
+use app\models\Advert;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -52,7 +54,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Location::find()->select(['name', 'id'])->indexBy('id')->column()
             ],
+            'address',
             'price',
+            [
+                'class' => SetColumn::className(),
+                'filter' => Advert::getStatusesArray(),
+                'attribute' => 'status',
+                'name' => 'statusName',
+                'cssCLasses' => [
+                    Advert::STATUS_ACTIVE => 'success',
+                    Advert::STATUS_INACTIVE => 'warning',
+                ],
+            ],
             //'description:ntext',
             //'coordinates',
 

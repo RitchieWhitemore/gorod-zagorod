@@ -17,7 +17,7 @@ class AdvertSearch extends Advert
     public function rules()
     {
         return [
-            [['id', 'type_advert_id', 'property_id', 'location_id', 'price'], 'integer'],
+            [['id', 'type_advert_id', 'property_id', 'location_id', 'price', 'status'], 'integer'],
             [['description', 'coordinates'], 'safe'],
         ];
     }
@@ -58,11 +58,12 @@ class AdvertSearch extends Advert
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id'             => $this->id,
             'type_advert_id' => $this->typeAdvert,
-            'property_id' => $this->property_id,
-            'location_id' => $this->location_id,
-            'price' => $this->price,
+            'property_id'    => $this->property_id,
+            'location_id'    => $this->location_id,
+            'price'          => $this->price,
+            'status'         => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
