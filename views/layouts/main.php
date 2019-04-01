@@ -1,7 +1,11 @@
 <?php
 
+use app\assets\AppAsset;
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
+
+AppAsset::register($this);
 ?>
 
 <?php $this->beginPage()?>
@@ -14,7 +18,7 @@ use yii\helpers\Html;
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href="./css/style.css" rel="stylesheet" type="text/css">
+
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="/node_modules/web-animations-js/web-animations-next.min.js"></script>
     <script type="module">
@@ -31,20 +35,20 @@ use yii\helpers\Html;
         </div>
     </div>
     <div class="page-header__wrapper container">
-        <div class="page-header__logo"><a href="index.html" class="link page-header__logo-link"><span>агенство недвижимости</span>город <b>загород</b></a></div>
+        <div class="page-header__logo"><a href="<?= Url::home()?>" class="link page-header__logo-link"><span>агенство недвижимости</span>город <b>загород</b></a></div>
         <nav id="main-menu" class="page-header__menu main-menu">
             <button id="main-menu-button" class="main-menu__button">Меню</button>
             <ul class="main-menu__list">
-                <a href="index.html" class="main-menu__link">
+                <a href="<?= Url::home()?>" class="main-menu__link">
                     <li class="main-menu__item">Главная</li>
                 </a>
-                <a href="properties.html" class="main-menu__link">
+                <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link">
                     <li class="main-menu__item">Объявления</li>
                 </a>
-                <a href="about.html" class="main-menu__link">
+                <a href="<?= Url::to(['/site/about'])?>" class="main-menu__link">
                     <li class="main-menu__item">О компании</li>
                 </a>
-                <a href="contact.html" class="main-menu__link">
+                <a href="<?= Url::to(['/site/contact'])?>" class="main-menu__link">
                     <li class="main-menu__item">Контакты</li>
                 </a>
             </ul>
@@ -52,6 +56,24 @@ use yii\helpers\Html;
     </div>
 </header>
 <div>
+    <?php if ($this->context->id === 'site' && $this->context->action->id === 'index') : ?>
+    <section class="main-heading">
+        <div class="main-heading__wrapper">
+            <div class="container">
+                <h1 class="main-heading__title"><?= $this->params['h1']?></h1>
+            </div>
+        </div>
+    </section>
+    <?php else : ?>
+        <section class="page-heading">
+            <div class="page-heading__wrapper">
+                <div class="container">
+                    <h1 class="page-heading__title"><?= $this->params['h1']?></h1>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
+
     <?= Alert::widget() ?>
     <?= $content ?>
 </div>
@@ -139,5 +161,7 @@ use yii\helpers\Html;
     }
 
 </script>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

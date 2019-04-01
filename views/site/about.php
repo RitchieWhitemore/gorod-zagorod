@@ -4,15 +4,10 @@
 
 use yii\helpers\Html;
 
-$this->title = Yii::t('app', 'NAV_ABOUT');
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['h1'] = 'Раздел находится в разработке';
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
-
-    <code><?= __FILE__ ?></code>
+<div class="container">
+    <p>Раздел находится в разработке</p>
 </div>
+
