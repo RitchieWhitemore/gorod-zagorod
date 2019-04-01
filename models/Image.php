@@ -71,4 +71,9 @@ class Image extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Advert::className(), ['id' => 'advert_id']);
     }
+
+    public function __toString()
+    {
+        return $this->file_name;
+    }
 }

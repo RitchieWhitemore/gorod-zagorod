@@ -182,14 +182,7 @@ class Advert extends \yii\db\ActiveRecord
             $main = $this->getImages()->limit(1)->one();
         }
 
-        if ($main == null) {
-            $fileName = '';
-        } else {
-            $fileName = $main->file_name;
-        }
-
-
-        return '/images/adverts/' . $this->id . '/' . $fileName;
+        return '/images/adverts/' . $this->id . '/' . $main;
 
     }
 

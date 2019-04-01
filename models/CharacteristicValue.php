@@ -68,4 +68,9 @@ class CharacteristicValue extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Characteristic::className(), ['id' => 'characteristic_id']);
     }
+
+    public function __toString()
+    {
+        return $this->value;
+    }
 }
