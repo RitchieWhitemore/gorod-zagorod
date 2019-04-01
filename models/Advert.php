@@ -126,6 +126,19 @@ class Advert extends \yii\db\ActiveRecord
         return $this->hasMany(Image::className(), ['advert_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCharacteristicValues()
+    {
+        return $this->hasMany(CharacteristicValue::className(), ['advert_id' => 'id']);
+    }
+
+    public function getCharacteristics()
+    {
+        return $this->hasMany(Characteristic::className(), ['id' => 'characteristic_id'])->viaTable('characteristic_value', ['advert_id' => 'id']);
+    }
+
     public function getStatusName()
     {
         return ArrayHelper::getValue(self::getStatusesArray(), $this->status);

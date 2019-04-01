@@ -41,6 +41,11 @@ use app\models\Property;
 
     <?= $form->field($model, 'status')->dropDownList($model::getStatusesArray()) ?>
 
+    <h2>Характеристики объявления</h2>
+    <?php foreach ($values as $value): ?>
+        <?= $form->field($value, '[' . $value->characteristic->id . ']value')->label($value->characteristic->name); ?>
+    <?php endforeach; ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

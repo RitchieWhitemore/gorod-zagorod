@@ -4,19 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Advert */
+/* @var $model app\models\Characteristic */
 
-
-$bundle = \app\assets\WebComponentsAsset::register($this);
-
-$this->registerJsFile("$bundle->baseUrl/image-list/image-list.js", ['type' => 'module']);
-
-$this->title = "Объявление № {$model->id}";
-$this->params['breadcrumbs'][] = ['label' => 'Объявления', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Характеристики', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="advert-view">
+<div class="characteristic-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -35,22 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'typeAdvert.name',
-            'property.name',
-            'location.name',
-            'street',
-            'house',
-            'apartment',
-            'price',
-            [
-            'attribute' => 'status',
-            'label' => 'Статус',
-            'value' => $model->getStatusName(),
-],
-
+            'name',
         ],
     ]) ?>
-    <hr>
-    <image-list owner-id=<?=$model->id ?>></image-list>
 
 </div>

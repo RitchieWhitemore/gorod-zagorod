@@ -2,20 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\Characteristic;
-use app\models\CharacteristicValue;
 use Yii;
-use app\models\Advert;
-use app\modules\admin\models\AdvertSearch;
-use yii\base\Model;
+use app\models\Characteristic;
+use app\modules\admin\models\CharacteristicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdvertsController implements the CRUD actions for Advert model.
+ * CharacteristicsController implements the CRUD actions for Characteristic model.
  */
-class AdvertsController extends Controller
+class CharacteristicsController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,12 +30,12 @@ class AdvertsController extends Controller
     }
 
     /**
-     * Lists all Advert models.
+     * Lists all Characteristic models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AdvertSearch();
+        $searchModel = new CharacteristicSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -48,7 +45,7 @@ class AdvertsController extends Controller
     }
 
     /**
-     * Displays a single Advert model.
+     * Displays a single Characteristic model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -61,31 +58,25 @@ class AdvertsController extends Controller
     }
 
     /**
-     * Creates a new Advert model.
+     * Creates a new Characteristic model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Advert();
+        $model = new Characteristic();
 
-        $values = $this->initValues($model);
-
-        $post = Yii::$app->request->post();
-
-        if ($model->load($post) && $model->save() && Model::loadMultiple($values, $post)) {
-            $this->processValues($values, $model);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'values' => $values,
         ]);
     }
 
     /**
-     * Updates an existing Advert model.
+     * Updates an existing Characteristic model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,23 +85,18 @@ class AdvertsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $values = $this->initValues($model);
 
-        $post = Yii::$app->request->post();
-
-        if ($model->load($post) && $model->save() && Model::loadMultiple($values, $post)) {
-            $this->processValues($values, $model);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
-            'values' => $values,
         ]);
     }
 
     /**
-     * Deletes an existing Advert model.
+     * Deletes an existing Characteristic model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,55 +110,18 @@ class AdvertsController extends Controller
     }
 
     /**
-     * Finds the Advert model based on its primary key value.
+     * Finds the Characteristic model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Advert the loaded model
+     * @return Characteristic the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Advert::findOne($id)) !== null) {
+        if (($model = Characteristic::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-    }
-
-    private function initValues(Advert $model)
-    {
-        /** @var CharacteristicValue[] $values */
-        $values = $model->getCharacteristicValues()->with('advert')->indexBy('characteristic_id')->all();
-        $characteristics = Characteristic::find()->indexBy('id')->all();
-
-        $arr = array_diff_key($characteristics, $values);
-        foreach ($arr as $characteristic) {
-            $values[$characteristic->id] = new CharacteristicValue(['characteristic_id' => $characteristic->id]);
-        }
-
-        uasort($values, function ($a, $b) {
-            return $a->characteristic->name > $b->characteristic->name;
-        });
-
-        foreach ($values as $value) {
-            $value->setScenario(CharacteristicValue::SCENARIO_TABULAR);
-        }
-
-        return $values;
-    }
-
-    private function processValues($values, Advert $model)
-    {
-        foreach ($values as $value) {
-            $value->advert_id = $model->id;
-            if ($value->validate()) {
-                if (!empty($value->value)) {
-                    $value->save(false);
-                }
-                else {
-                    $value->delete();
-                }
-            }
-        }
     }
 }

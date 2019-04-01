@@ -53,6 +53,7 @@ AppAsset::register($this);
                     ['label' => 'Объявления', 'url' => ['/admin/adverts/index']],
                     ['label' => 'Типы объявлений', 'url' => ['/admin/ad-types/index']],
                     ['label' => 'Недвижимость', 'url' => ['/admin/property/index']],
+                    ['label' => 'Характеристики', 'url' => ['/admin/characteristics/index']],
                 ],
             ],
 
