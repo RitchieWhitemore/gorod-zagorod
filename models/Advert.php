@@ -22,6 +22,7 @@ use yii\helpers\ArrayHelper;
  * @property TypeAdvert $typeAdvert
  * @property Property $property
  * @property Image $images
+ * @property CharacteristicValue $area
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -166,6 +167,30 @@ class Advert extends \yii\db\ActiveRecord
 
 
         return $address;
+    }
+
+    public function getArea()
+    {
+        return $this->getCharacteristicValues()->where(['characteristic_id' => 1])->one();
+    }
+
+    public function getMainImageUrl()
+    {
+        $main = $this->getImages()->where(['main' => 1])->limit(1)->one();
+
+        if ($main == null) {
+            $main = $this->getImages()->limit(1)->one();
+        }
+
+        if ($main == null) {
+            $fileName = '';
+        } else {
+            $fileName = $main->file_name;
+        }
+
+
+        return '/images/adverts/' . $this->id . '/' . $fileName;
+
     }
 
     public static function getStatusesArray()
