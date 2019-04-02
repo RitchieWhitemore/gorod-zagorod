@@ -6,7 +6,7 @@ $this->params['h1'] = 'Поиск недвижимости';
 use yii\widgets\ListView; ?>
 <section class="properties container">
     <header class="properties__header">
-        <h2 class="properties__title">Найдено 156789 предложений по запросу:<br> <span class="properties__request">"Купить квартиру в Александрове"</span>
+        <h2 class="properties__title">Найдено <?= count($model->getModels())?> предложений по запросу:<br> <span class="properties__request">"Купить квартиру в Александрове"</span>
         </h2>
         <div class="properties__view-wrapper">
             <button id="view-list" class="properties__view-button properties__view-button--list">Список</button>

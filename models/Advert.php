@@ -17,12 +17,15 @@ use yii\helpers\ArrayHelper;
  * @property string $description
  * @property string $coordinates
  * @property string $address
+ * @property string $mainImagePath
+ * @property string $mainImageUrl
  *
  * @property Location $location
  * @property TypeAdvert $typeAdvert
  * @property Property $property
  * @property Image $images
  * @property CharacteristicValue $area
+ *
  */
 class Advert extends \yii\db\ActiveRecord
 {
@@ -183,6 +186,18 @@ class Advert extends \yii\db\ActiveRecord
         }
 
         return '/images/adverts/' . $this->id . '/' . $main;
+
+    }
+
+    public function getMainImagePath()
+    {
+        $main = $this->getImages()->where(['main' => 1])->limit(1)->one();
+
+        if ($main == null) {
+            $main = $this->getImages()->limit(1)->one();
+        }
+
+        return Yii::getAlias('@webroot') . '/images/adverts/' . $this->id . '/' . $main;
 
     }
 

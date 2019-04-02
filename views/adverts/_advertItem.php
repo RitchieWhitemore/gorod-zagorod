@@ -7,7 +7,18 @@
 
 <a class="link" href="<?= \yii\helpers\Url::to(['adverts/view', 'id' => $model->id]) ?>">
     <div class="property-item__image-wrapper">
-        <img src="<?= $model->mainImageUrl ?>">
+        <img src="<?= Yii::$app->thumbnail->url($model->mainImagePath, [
+            'thumbnail' => [
+                'width' => 320,
+                'height' => 230,
+            ],
+            'placeholder' => [
+                'width' => 320,
+                'height' => 230
+            ]
+        ]);
+
+        ?>" >
         <span class="property-item__label property-item__label--buy">Продается</span>
     </div>
     <div class="property-item__content">

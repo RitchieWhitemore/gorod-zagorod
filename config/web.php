@@ -1,5 +1,7 @@
 <?php
 
+use sadovojav\image\Thumbnail;
+
 $config = [
     'id' => 'app',
     'language'=>'ru-RU',
@@ -14,6 +16,19 @@ $config = [
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
+        ],
+        'thumbnail' => [
+            'class' => 'sadovojav\image\Thumbnail',
+            'cachePath' => '@webroot/images/thumbnails',
+            'options' => [
+                'placeholder' => [
+                    'type' => sadovojav\image\Thumbnail::PLACEHOLDER_TYPE_IMAGINE,
+                    'backgroundColor' => '#f5f5f5',
+                    'textColor' => '#cdcdcd',
+                    'textSize' => 30,
+                    'text' => 'No image'
+                ],
+            ]
         ],
     ],
     'modules' => [
