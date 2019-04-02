@@ -17,8 +17,11 @@ use app\models\TypeLocation;
         <div class="col-sm-4">
             <?= $form->field($model, 'type_location_id')->dropDownList(TypeLocation::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-4">
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-sm-4">
+            <?= $form->field($model, 'name_where')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
 

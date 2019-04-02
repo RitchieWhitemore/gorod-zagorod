@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $name_where
  *
  * @property Advert[] $adverts
  * @property TypeLocation[] $type_location_id
@@ -29,8 +30,8 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'type_location_id'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'type_location_id', 'name_where'], 'required'],
+            [['name', 'name_where'], 'string', 'max' => 255],
             [['type_location_id'], 'exist', 'skipOnError' => true, 'targetClass' => TypeLocation::className(), 'targetAttribute' => ['type_location_id' => 'id']],
         ];
     }
@@ -43,6 +44,7 @@ class Location extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'name' => 'Локация',
+            'name_where' => 'Склонение в форме "где"',
             'type_location_id' => 'Тип локации',
         ];
     }
