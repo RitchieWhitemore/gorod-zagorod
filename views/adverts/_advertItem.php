@@ -19,7 +19,7 @@
         ]);
 
         ?>" >
-        <span class="property-item__label property-item__label--buy">Продается</span>
+        <span class="property-item__label property-item__label--buy"><?= $model->typeAdvert->name_type_offer ?></span>
     </div>
     <div class="property-item__content">
         <h3 class="property-item__title"><?= $model->address ?></h3>

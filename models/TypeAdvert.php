@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $name_type_offer
  */
 class TypeAdvert extends \yii\db\ActiveRecord
 {
@@ -26,8 +27,8 @@ class TypeAdvert extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255],
+            [['name', 'name_type_offer'], 'required'],
+            [['name', 'name_type_offer'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,6 +40,7 @@ class TypeAdvert extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Тип объявления',
+            'name_type_offer' => 'Имя предложения (выводится в плашке объявления)'
         ];
     }
 }
