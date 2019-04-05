@@ -2,6 +2,12 @@
 
 use yii\widgets\ListView;
 
+$bundle = \app\assets\WebComponentsAsset::register($this);
+
+$this->registerJsFile("$bundle->baseUrl/selection-dropdown-list/selection-dropdown-list.js", ['type' => 'module']);
+
+$request = Yii::$app->request;
+
 /* @var $this yii\web\View */
 
 $this->params['h1'] = 'Поиск недвижимости';
@@ -33,12 +39,14 @@ $this->params['h1'] = 'Поиск недвижимости';
             </select>
         </div>
         <div class="properties__select-wrapper">Отображать по
-            <select class="properties__select">
-                <option>15</option>
-                <option>30</option>
-                <option>60</option>
-                <option>100</option>
-            </select>
+            <selection-dropdown-list>
+                <select class="properties__select">
+                    <option <?= $request->get('size-page') == 15 ? 'selected' : ''?>>15</option>
+                    <option <?= $request->get('size-page') == 30 ? 'selected' : ''?>>30</option>
+                    <option <?= $request->get('size-page') == 60 ? 'selected' : ''?>>60</option>
+                    <option <?= $request->get('size-page') == 100 ? 'selected' : ''?>>100</option>
+                </select>
+            </selection-dropdown-list>
         </div>
     </div>
 

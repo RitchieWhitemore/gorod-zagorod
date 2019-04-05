@@ -15,8 +15,6 @@ class AdvertsController extends \yii\web\Controller
     {
         $request = Yii::$app->request;
 
-        $params = $request->queryParams;
-
         $requestString = '';
 
         $query =  Advert::find()->joinWith('location');
@@ -54,7 +52,7 @@ class AdvertsController extends \yii\web\Controller
         if ($request->get('size-page')) {
             $pageSize = $request->get('size-page');
         } else {
-            $pageSize = 1;
+            $pageSize = 15;
         }
 
         $model = new ActiveDataProvider([
