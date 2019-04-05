@@ -23,10 +23,14 @@
 //= template/form-search.html
 <section class="properties container">
     <header class="properties__header">
-        <h2 class="properties__title">Найдено 156789 предложений по запросу:<br> <span class="properties__request">"Купить квартиру в Александрове"</span></h2>
+        <h2 class="properties__title">Найдено 156789 предложений по запросу:<br> <span class="properties__request">"Купить квартиру в Александрове"</span>
+        </h2>
         <div class="properties__view-wrapper">
             <button id="view-list" class="properties__view-button properties__view-button--list">Список</button>
-            <button id="view-table" class="properties__view-button properties__view-button--table properties__view-button--table-active">Таблица</button>
+            <button id="view-table"
+                    class="properties__view-button properties__view-button--table properties__view-button--table-active">
+                Таблица
+            </button>
         </div>
     </header>
     <div class="properties__control-wrapper">
@@ -55,9 +59,7 @@
         //= template/property-item.html
         //= template/property-item.html
         //= template/property-item.html
-    </div>
-    <div class="properties__pagination pagination">
-        <ul class="pagination__list">
+        <ul class="properties__pagination pagination__list">
             <li class="pagination__item pagination__item--disabled"><span>Назад</span></li>
             <li class="pagination__item pagination__item--active"><a href="#" class="link pagination__link">1</a></li>
             <li class="pagination__item"><a href="#" class="link pagination__link">2</a></li>
