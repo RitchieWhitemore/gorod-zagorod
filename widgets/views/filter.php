@@ -1,7 +1,10 @@
 <?php
 
-use app\models\Property;
 use yii\widgets\ActiveForm;
+
+$bundle = \app\assets\WebComponentsAsset::register($this);
+
+$this->registerJsFile("$bundle->baseUrl/search-location/search-location.js", ['type' => 'module']);
 
 $request = Yii::$app->request;
 
@@ -31,7 +34,9 @@ if ($request->get('type-advert')) {
     </div>
     <div class="form-search__group form-search__city-wrapper">
         <label for="cityField">Место нахождения</label>
-        <input id="cityField" type="text" name="city" placeholder="Наберите город..." class="form-search__input">
+        <search-location>
+            <input id="cityField" type="text" name="location" placeholder="Наберите город..." class="form-search__input" autocomplete="off">
+        </search-location>
     </div>
     <div class="form-search__group form-search__property-wrapper">
         <label>Недвижимость</label>

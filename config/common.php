@@ -44,6 +44,7 @@ return [
             'rules'               => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/advert',],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/image',],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'api/location',],
 
                 ''      => 'site/index',
                 'admin' => 'admin/default/index',

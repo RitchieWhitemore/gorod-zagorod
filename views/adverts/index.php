@@ -1,13 +1,21 @@
 <?php
+
+use yii\widgets\ListView;
+
 /* @var $this yii\web\View */
 
 $this->params['h1'] = 'Поиск недвижимости';
 
-use yii\widgets\ListView; ?>
+?>
 <section class="properties container">
     <header class="properties__header">
-        <h2 class="properties__title">Найдено <?= count($model->getModels())?> предложений по запросу:<br> <span class="properties__request">"Купить квартиру в Александрове"</span>
+        <?php if ($requestString == '') : ?>
+        <h2 class="properties__title">Найдено <?= count($model->getTotalCount())?> предложений.
         </h2>
+        <?php else : ?>
+            <h2 class="properties__title">Найдено <?= count($model->getTotalCount())?> предложений по запросу:<br> <span class="properties__request">"<?= $requestString ?>"</span>
+            </h2>
+        <?php endif; ?>
         <div class="properties__view-wrapper">
             <button id="view-list" class="properties__view-button properties__view-button--list">Список</button>
             <button id="view-table"
