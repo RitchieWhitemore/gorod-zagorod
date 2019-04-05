@@ -55,12 +55,20 @@ class AdvertsController extends \yii\web\Controller
             $pageSize = 15;
         }
 
+        $sort = SORT_DESC;
+        if ($request->get('sort')) {
+            $sortParam = $request->get('sort');
+            if ($sortParam == 'asc') {
+                $sort = SORT_ASC;
+            }
+        }
+
         $model = new ActiveDataProvider([
            'query' => $query,
            'pagination' => ['pageSize' => $pageSize],
            'sort' => [
                'defaultOrder' => [
-                   'id' => SORT_DESC,
+                   'id' => $sort,
                ]
            ]
         ]);

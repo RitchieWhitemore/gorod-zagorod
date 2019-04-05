@@ -12,7 +12,9 @@ class SelectionDropdownList extends PolymerElement {
     }
 
     static get properties() {
-        return {}
+        return {
+            type: String,
+        }
     }
 
     constructor() {
@@ -24,7 +26,13 @@ class SelectionDropdownList extends PolymerElement {
 
         const selectElement = this.querySelector('select');
 
-        selectElement.addEventListener('change', this.quantitySelected.bind(this));
+        if (this.type == 'sort') {
+            selectElement.addEventListener('change', this.sortedSelected.bind(this));
+        } else {
+            selectElement.addEventListener('change', this.quantitySelected.bind(this));
+        }
+
+
     }
 
     parseQueryString(queryString) {
@@ -32,6 +40,7 @@ class SelectionDropdownList extends PolymerElement {
 
         let queries, temp;
 
+        queryString = queryString.substring(1);
         if (queryString) {
             queries = queryString.split("&");
 
@@ -61,15 +70,23 @@ class SelectionDropdownList extends PolymerElement {
 
     quantitySelected(evt) {
         const value = evt.currentTarget.selectedOptions[0].value;
-        console.log(window.location.search);
 
-        let search = location.search.substring(1);
-        const params = this.parseQueryString(search);
+        const params = this.parseQueryString(location.search);
 
         params['size-page'] = value;
 
         window.location.href = '/adverts?' + this.paramsToString(params);
     };
+
+    sortedSelected(evt) {
+        const value = evt.currentTarget.selectedOptions[0].dataset.sort;
+
+        const params = this.parseQueryString(location.search);
+
+        params['sort'] = value;
+
+        window.location.href = '/adverts?' + this.paramsToString(params);
+    }
 }
 
 customElements.define('selection-dropdown-list', SelectionDropdownList);

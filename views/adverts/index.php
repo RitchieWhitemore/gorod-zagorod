@@ -33,18 +33,20 @@ $this->params['h1'] = 'Поиск недвижимости';
     </header>
     <div class="properties__control-wrapper">
         <div class="properties__select-wrapper">Упорядочены
-            <select class="properties__select">
-                <option>от новых к старым</option>
-                <option>от старых к новым</option>
-            </select>
+            <selection-dropdown-list type="sort">
+                <select class="properties__select">
+                    <option data-sort="desc" <?= $request->get('sort') == 'desc' ? 'selected' : '' ?>>от старых к новым</option>
+                    <option data-sort="asc" <?= $request->get('sort') == 'asc' ? 'selected' : '' ?>>от новых к старым</option>
+                </select>
+            </selection-dropdown-list>
         </div>
         <div class="properties__select-wrapper">Отображать по
             <selection-dropdown-list>
                 <select class="properties__select">
-                    <option <?= $request->get('size-page') == 15 ? 'selected' : ''?>>15</option>
-                    <option <?= $request->get('size-page') == 30 ? 'selected' : ''?>>30</option>
-                    <option <?= $request->get('size-page') == 60 ? 'selected' : ''?>>60</option>
-                    <option <?= $request->get('size-page') == 100 ? 'selected' : ''?>>100</option>
+                    <option <?= $request->get('size-page') == 15 ? 'selected' : '' ?>>15</option>
+                    <option <?= $request->get('size-page') == 30 ? 'selected' : '' ?>>30</option>
+                    <option <?= $request->get('size-page') == 60 ? 'selected' : '' ?>>60</option>
+                    <option <?= $request->get('size-page') == 100 ? 'selected' : '' ?>>100</option>
                 </select>
             </selection-dropdown-list>
         </div>
@@ -60,7 +62,7 @@ $this->params['h1'] = 'Поиск недвижимости';
             'activePageCssClass'   => 'pagination__item--active',
             'disabledPageCssClass' => 'pagination__item--disabled',
             'linkContainerOptions' => ['class' => 'pagination__item'],
-            'linkOptions' => ['class' => 'link pagination__link'],
+            'linkOptions'          => ['class' => 'link pagination__link'],
             'nextPageLabel'        => 'Вперед',
             'prevPageLabel'        => 'Назад',
             'options'              => [
