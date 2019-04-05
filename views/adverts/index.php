@@ -10,10 +10,11 @@ $this->params['h1'] = 'Поиск недвижимости';
 <section class="properties container">
     <header class="properties__header">
         <?php if ($requestString == '') : ?>
-        <h2 class="properties__title">Найдено <?= count($model->getTotalCount())?> предложений.
-        </h2>
+            <h2 class="properties__title">Найдено <?= count($model->getTotalCount()) ?> предложений.
+            </h2>
         <?php else : ?>
-            <h2 class="properties__title">Найдено <?= count($model->getTotalCount())?> предложений по запросу:<br> <span class="properties__request">"<?= $requestString ?>"</span>
+            <h2 class="properties__title">Найдено <?= count($model->getTotalCount()) ?> предложений по запросу:<br>
+                <span class="properties__request">"<?= $requestString ?>"</span>
             </h2>
         <?php endif; ?>
         <div class="properties__view-wrapper">
@@ -43,21 +44,22 @@ $this->params['h1'] = 'Поиск недвижимости';
 
     <?= ListView::widget([
         'dataProvider' => $model,
-        'itemView' => '_advertItem',
-        'itemOptions' => ['class' => 'module__item properties__item property-item'],
-        'options' => ['id' => 'property-list', 'class' => 'properties__list'],
-        'summary' => '',
+        'itemView'     => '_advertItem',
+        'itemOptions'  => ['class' => 'module__item properties__item property-item'],
+        'layout'       => "{items}\n{pager}",
+        'options'      => ['id' => 'property-list', 'class' => 'properties__list'],
+        'pager'        => [
+            'activePageCssClass'   => 'pagination__item--active',
+            'disabledPageCssClass' => 'pagination__item--disabled',
+            'linkContainerOptions' => ['class' => 'pagination__item'],
+            'linkOptions' => ['class' => 'link pagination__link'],
+            'nextPageLabel'        => 'Вперед',
+            'prevPageLabel'        => 'Назад',
+            'options'              => [
+                'class' => 'properties__pagination pagination__list'
+            ]
+        ],
     ])
 
     ?>
-    <div class="properties__pagination pagination">
-        <ul class="pagination__list">
-            <li class="pagination__item pagination__item--disabled"><span>Назад</span></li>
-            <li class="pagination__item pagination__item--active"><a href="#" class="link pagination__link">1</a></li>
-            <li class="pagination__item"><a href="#" class="link pagination__link">2</a></li>
-            <li class="pagination__item"><a href="#" class="link pagination__link">3</a></li>
-            <li class="pagination__item"><a href="#" class="link pagination__link">4</a></li>
-            <li class="pagination__item"><a href="#" class="link pagination__link">Вперед</a></li>
-        </ul>
-    </div>
 </section>
