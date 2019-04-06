@@ -1,15 +1,16 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 $bundle = \app\assets\WebComponentsAsset::register($this);
 
 $this->registerJsFile("$bundle->baseUrl/search-location/search-location.js", ['type' => 'module']);
 
-$request = Yii::$app->request;
+$queryParams = Yii::$app->request->queryParams;
 
-if ($request->get('type-advert')) {
-    $typeAdvertId = $request->get('type-advert');
+if (ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id')) {
+    $typeAdvertId = ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id');
 } else {
     $typeAdvertId = 1;
 }
@@ -27,7 +28,7 @@ if ($request->get('type-advert')) {
     ]); ?>
     <div class="form-search__property-type-wrapper">
         <?php foreach ($typeAdvert as $key => $item) : ?>
-            <label class="form-search__property-type"><input type="radio" name="type-advert"
+            <label class="form-search__property-type"><input type="radio" name="AdvertSearch[type_advert_id]"
                                                              value="<?= $key ?>" <?= $typeAdvertId == $key ? 'checked' : '' ?>><span></span><?= $item ?>
             </label>
         <?php endforeach; ?>
@@ -35,15 +36,15 @@ if ($request->get('type-advert')) {
     <div class="form-search__group form-search__city-wrapper">
         <label for="cityField">Место нахождения</label>
         <search-location>
-            <input id="cityField" type="text" name="location" placeholder="Наберите город..." class="form-search__input" autocomplete="off">
+            <input id="cityField" type="text" name="AdvertSearch[location]" placeholder="Наберите город..." class="form-search__input" autocomplete="off" value="<?=ArrayHelper::getValue($queryParams, 'AdvertSearch.location')?>">
         </search-location>
     </div>
     <div class="form-search__group form-search__property-wrapper">
         <label>Недвижимость</label>
-        <select class="form-search__input" name="property">
-            <option value="0">Выберите тип недвижимости</option>
+        <select class="form-search__input" name="AdvertSearch[property_id]">
+            <option value="">Выберите тип недвижимости</option>
             <?php foreach ($property as $key => $item): ?>
-                <option value="<?= $key ?>" <?= $request->get('property') == $key ? 'selected' : '' ?>><?= $item ?></option>
+                <option value="<?= $key ?>" <?= ArrayHelper::getValue($queryParams, 'AdvertSearch.property_id') == $key ? 'selected' : '' ?>><?= $item ?></option>
             <?php endforeach; ?>
         </select>
     </div>

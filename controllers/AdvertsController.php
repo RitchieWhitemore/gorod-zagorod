@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use app\models\Advert;
 use app\models\Location;
 use app\models\Property;
 use app\models\TypeAdvert;
+use app\models\AdvertSearch;
 use Yii;
-use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 
 class AdvertsController extends \yii\web\Controller
 {
@@ -15,69 +15,63 @@ class AdvertsController extends \yii\web\Controller
     {
         $request = Yii::$app->request;
 
-        $requestString = '';
+        //$query =  Advert::find()->joinWith('location');
 
-        $query =  Advert::find()->joinWith('location');
+        $searchModel = new AdvertSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        if ($request->get('type-advert')) {
-            $query->andWhere(['type_advert_id' => $request->get('type-advert')]);
+        $requestString = $this->getRequestString($request);
 
-            $typeAdvert = TypeAdvert::findOne($request->get('type-advert'));
-
-            if ($typeAdvert) {
-                $requestString .= $typeAdvert->name;
-            }
-        }
-
-        if ($request->get('property')) {
-            $query->andWhere(['property_id' => $request->get('property')]);
-
-            $property = Property::findOne($request->get('property'));
-
-            if ($property) {
-                $requestString .= ' ' . $property->name;
-            }
-        }
-
-        if ($request->get('location')) {
-            $query->andWhere(['like', 'location.name', $request->get('location')]);
-
-            $location = Location::findOne(['name' => $request->get('location')]);
-
-            if ($location) {
-                $requestString .= ' в ' . $location->name_where;
-            }
-        }
-
-        if ($request->get('size-page')) {
-            $pageSize = $request->get('size-page');
+        if ($request->get('page-size')) {
+            $dataProvider->pagination->pageSize = $request->get('page-size');
         } else {
-            $pageSize = 15;
+            $dataProvider->pagination->pageSize = 15;
         }
 
-        $sort = SORT_DESC;
+        $dataProvider->sort->defaultOrder['id'] = SORT_DESC;
         if ($request->get('sort')) {
             $sortParam = $request->get('sort');
             if ($sortParam == 'asc') {
-                $sort = SORT_ASC;
+                $dataProvider->sort->defaultOrder['id'] = SORT_ASC;
             }
         }
 
-        $model = new ActiveDataProvider([
-           'query' => $query,
-           'pagination' => ['pageSize' => $pageSize],
-           'sort' => [
-               'defaultOrder' => [
-                   'id' => $sort,
-               ]
-           ]
-        ]);
-        return $this->render('index', ['model' => $model, 'requestString' => $requestString]);
+        return $this->render('index', ['model' => $dataProvider, 'requestString' => $requestString]);
     }
 
     public function actionView($id)
     {
         return $this->render('view');
+    }
+
+    private function getRequestString($request)
+    {
+
+        $requestString = '';
+
+        $queryParams = Yii::$app->request->queryParams;
+
+
+        $typeAdvert = TypeAdvert::findOne(ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id'));
+
+        if ($typeAdvert) {
+            $requestString .= $typeAdvert->name;
+        }
+
+        $property = Property::findOne(ArrayHelper::getValue($queryParams, 'AdvertSearch.property_id'));
+
+        if ($property) {
+            $requestString .= ' ' . $property->name;
+        }
+
+        $location = Location::findOne(['name' => ArrayHelper::getValue($queryParams, 'AdvertSearch.location')]);
+
+        if ($location) {
+            $requestString .= ' в ' . $location->name_where;
+        }
+
+
+        return $requestString;
     }
 
 }

@@ -43,10 +43,10 @@ $this->params['h1'] = 'Поиск недвижимости';
         <div class="properties__select-wrapper">Отображать по
             <selection-dropdown-list>
                 <select class="properties__select">
-                    <option <?= $request->get('size-page') == 15 ? 'selected' : '' ?>>15</option>
-                    <option <?= $request->get('size-page') == 30 ? 'selected' : '' ?>>30</option>
-                    <option <?= $request->get('size-page') == 60 ? 'selected' : '' ?>>60</option>
-                    <option <?= $request->get('size-page') == 100 ? 'selected' : '' ?>>100</option>
+                    <option <?= $request->get('page-size') == 15 ? 'selected' : '' ?>>15</option>
+                    <option <?= $request->get('page-size') == 30 ? 'selected' : '' ?>>30</option>
+                    <option <?= $request->get('page-size') == 60 ? 'selected' : '' ?>>60</option>
+                    <option <?= $request->get('page-size') == 100 ? 'selected' : '' ?>>100</option>
                 </select>
             </selection-dropdown-list>
         </div>

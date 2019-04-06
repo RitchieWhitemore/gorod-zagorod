@@ -73,7 +73,7 @@ class SelectionDropdownList extends PolymerElement {
 
         const params = this.parseQueryString(location.search);
 
-        params['size-page'] = value;
+        params['page-size'] = value;
 
         window.location.href = '/adverts?' + this.paramsToString(params);
     };
