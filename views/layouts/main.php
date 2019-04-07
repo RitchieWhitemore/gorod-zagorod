@@ -39,16 +39,16 @@ AppAsset::register($this);
         <nav id="main-menu" class="page-header__menu main-menu">
             <button id="main-menu-button" class="main-menu__button">Меню</button>
             <ul class="main-menu__list">
-                <a href="<?= Url::home()?>" class="main-menu__link">
+                <a href="<?= Url::home()?>" class="main-menu__link <?= Url::home() === Url::current() ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Главная</li>
                 </a>
-                <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link">
+                <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link <?= Url::to(['/adverts']) === Url::current() ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Объявления</li>
                 </a>
-                <a href="<?= Url::to(['/site/about'])?>" class="main-menu__link">
+                <a href="<?= Url::to(['/site/about'])?>" class="main-menu__link <?= Url::to(['/site/about']) === Url::current() ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">О компании</li>
                 </a>
-                <a href="<?= Url::to(['/site/contact'])?>" class="main-menu__link">
+                <a href="<?= Url::to(['/site/contact'])?>" class="main-menu__link <?= Url::to(['/site/contact']) === Url::current() ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Контакты</li>
                 </a>
             </ul>
@@ -82,22 +82,22 @@ AppAsset::register($this);
         <nav class="page-footer__menu footer-menu">
             <ul class="footer-menu__list">
                 <li class="footer-menu__item">
-                    <a href="index.html" class="footer-menu__link">
+                    <a href="<?= Url::home() ?>" class="footer-menu__link <?= Url::home() === Url::current() ? 'footer-menu__link--active' : ''?>">
                         Главная
                     </a></li>
-                <li class="footer-menu__item">
-                    <a href="#" class="footer-menu__link">
+                <li class="footer-menu__item <?= Url::to(['/adverts']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                    <a href="<?= Url::to(['/adverts']) ?>" class="footer-menu__link">
                         Объявления
                     </a>
                 </li>
-                <li class="footer-menu__item">
-                    <a href="#" class="footer-menu__link">
+                <li class="footer-menu__item <?= Url::to(['/site/about']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                    <a href="<?= Url::to(['/site/about']) ?>" class="footer-menu__link">
 
                         О Компании
 
                     </a></li>
-                <li class="footer-menu__item">
-                    <a href="#" class="footer-menu__link">
+                <li class="footer-menu__item <?= Url::to(['/site/contact']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                    <a href="<?= Url::to(['/site/contact'])?>" class="footer-menu__link">
 
                         Контакты
 
