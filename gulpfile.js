@@ -36,6 +36,7 @@ gulp.task("style", function() {
 
         .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest("src/css"))
+        .pipe(gulp.dest("web/css"))
         .pipe(server.reload({stream: true}));
 });
 
