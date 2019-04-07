@@ -15,13 +15,15 @@ class AdvertSearch extends Advert
     public $location;
     public $minArea;
     public $maxArea;
+    public $minPrice;
+    public $maxPrice;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'type_advert_id', 'property_id', 'price', 'status', 'minArea', 'maxArea'], 'integer'],
+            [['id', 'type_advert_id', 'property_id', 'price', 'status', 'minArea', 'maxArea', 'minPrice', 'maxPrice'], 'integer'],
             [['location'], 'string'],
             [['description', 'location_id', 'coordinates'], 'safe'],
         ];
@@ -69,12 +71,14 @@ class AdvertSearch extends Advert
             'type_advert_id' => $this->type_advert_id,
             'property_id'    => $this->property_id,
             'location.name'  => $this->location,
-            'price'          => $this->price,
             'status'         => $this->status,
         ]);
 
         $query->andFilterWhere(['>=', 'char.value', $this->minArea]);
         $query->andFilterWhere(['<=', 'char.value', $this->maxArea]);
+
+        $query->andFilterWhere(['>=', 'price', $this->minPrice]);
+        $query->andFilterWhere(['<=', 'price', $this->maxPrice]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'coordinates', $this->coordinates]);

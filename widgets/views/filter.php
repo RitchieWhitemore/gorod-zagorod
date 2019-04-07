@@ -17,6 +17,9 @@ if (ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id')) {
 
 $minArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.minArea', $area['min']['value']);
 $maxArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxArea', $area['max']['value']);
+
+$minPrice = ArrayHelper::getValue($queryParams, 'AdvertSearch.minPrice', $price['min']['price']);
+$maxPrice = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxPrice', $price['max']['price']);
 ?>
 
 <section id="form-search" class="form-search">
@@ -52,7 +55,7 @@ $maxArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxArea', $area['ma
     </div>
     <div class="form-search__group form-search__range">
         <label>Площадь</label>
-        <paper-range-slider id="myPaperRangeSliderId" min="<?= $area['min']['value']?>" max="<?= $area['max']['value'] ?>" value-min="<?= $minArea ?>" value-max="<?= $maxArea ?>">
+        <paper-range-slider id="paperRangeSliderArea" min="<?= $area['min']['value']?>" max="<?= $area['max']['value'] ?>" value-min="<?= $minArea ?>" value-max="<?= $maxArea ?>">
         </paper-range-slider>
         <span id="minAreaLabel" class="form-search__range-result"><?= $minArea ?> м2</span> - <span
                 id="maxAreaLabel" class="form-search__range-result"><?= $maxArea ?> м2</span>
@@ -61,9 +64,11 @@ $maxArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxArea', $area['ma
     </div>
     <div class="form-search__group form-search__range">
         <label>Стоимость</label>
-        <paper-range-slider></paper-range-slider>
-        <span class="form-search__range-result">1000 Р</span> - <span
-                class="form-search__range-result">10000000 Р</span>
+        <paper-range-slider id="paperRangeSliderPrice" step='1000' min="<?= $price['min']['price']?>" max="<?= $price['max']['price'] ?>" value-min="<?= $minPrice ?>" value-max="<?= $maxPrice ?>"></paper-range-slider>
+        <span id="minPriceLabel" class="form-search__range-result"><?= $minPrice ?> Р</span> - <span
+                id="maxPriceLabel" class="form-search__range-result"><?= $maxPrice ?> Р</span>
+        <input id="minPriceInput" hidden name="AdvertSearch[minPrice]" value="<?= $minPrice ?>">
+        <input id="maxPriceInput" hidden name="AdvertSearch[maxPrice]" value="<?= $maxPrice ?>">
     </div>
     <button type="submit" class="btn form-search__button-search">Найти</button>
     <?php ActiveForm::end(); ?>

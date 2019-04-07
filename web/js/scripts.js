@@ -48,7 +48,7 @@ if (viewListButton) {
 
 /* слайдер */
 
-document.querySelector("#myPaperRangeSliderId").addEventListener('updateValues', function (customEvent) {
+document.querySelector("#paperRangeSliderArea").addEventListener('updateValues', function (customEvent) {
     const minAreaInput = document.querySelector('#minAreaInput');
     const maxAreaInput = document.querySelector('#maxAreaInput');
     const minAreaLabel = document.querySelector('#minAreaLabel');
@@ -58,5 +58,16 @@ document.querySelector("#myPaperRangeSliderId").addEventListener('updateValues',
     minAreaInput.value = this.valueMin;
     maxAreaLabel.innerText = this.valueMax + ' м2';
     minAreaLabel.innerText = this.valueMin + ' м2';
-    //console.log(' - current min/max values: ',this.valueMin,this.valueMax)
+});
+
+document.querySelector("#paperRangeSliderPrice").addEventListener('updateValues', function (customEvent) {
+    const minPriceInput = document.querySelector('#minPriceInput');
+    const maxPriceInput = document.querySelector('#maxPriceInput');
+    const minPriceLabel = document.querySelector('#minPriceLabel');
+    const maxPriceLabel = document.querySelector('#maxPriceLabel');
+
+    maxPriceInput.value = this.valueMax;
+    minPriceInput.value = this.valueMin;
+    maxPriceLabel.innerText = this.valueMax + ' м2';
+    minPriceLabel.innerText = this.valueMin + ' м2';
 });
