@@ -13,13 +13,15 @@ use yii\data\ActiveDataProvider;
 class AdvertSearch extends Advert
 {
     public $location;
+    public $minArea;
+    public $maxArea;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'type_advert_id', 'property_id', 'price', 'status'], 'integer'],
+            [['id', 'type_advert_id', 'property_id', 'price', 'status', 'minArea', 'maxArea'], 'integer'],
             [['location'], 'string'],
             [['description', 'location_id', 'coordinates'], 'safe'],
         ];
@@ -43,7 +45,9 @@ class AdvertSearch extends Advert
      */
     public function search($params)
     {
-        $query = Advert::find()->joinWith('location');
+        $query = Advert::find()->joinWith(['location', 'characteristicValues char' => function($query) {
+            $query->onCondition(['char.characteristic_id' => 1]);
+        }]);
 
         // add conditions that should always apply here
 
@@ -68,6 +72,9 @@ class AdvertSearch extends Advert
             'price'          => $this->price,
             'status'         => $this->status,
         ]);
+
+        $query->andFilterWhere(['>=', 'char.value', $this->minArea]);
+        $query->andFilterWhere(['<=', 'char.value', $this->maxArea]);
 
         $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'coordinates', $this->coordinates]);

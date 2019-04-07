@@ -4,7 +4,7 @@
 $this->params['h1'] = 'Объявление';
 ?>
 
-
+<?= \app\widgets\Filter::widget()?>
 <section class="page-property container">
     <div class="page-property__content-wrapper">
         <div class="page-property__content">

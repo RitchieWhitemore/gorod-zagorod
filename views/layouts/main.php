@@ -73,7 +73,6 @@ AppAsset::register($this);
             </div>
         </section>
     <?php endif; ?>
-    <?= \app\widgets\Filter::widget()?>
 
     <?= Alert::widget() ?>
     <?= $content ?>

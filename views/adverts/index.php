@@ -13,6 +13,7 @@ $request = Yii::$app->request;
 $this->params['h1'] = 'Поиск недвижимости';
 
 ?>
+<?= \app\widgets\Filter::widget()?>
 <section class="properties container">
     <header class="properties__header">
         <?php if ($requestString == '') : ?>

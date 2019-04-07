@@ -15,8 +15,6 @@ class AdvertsController extends \yii\web\Controller
     {
         $request = Yii::$app->request;
 
-        //$query =  Advert::find()->joinWith('location');
-
         $searchModel = new AdvertSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

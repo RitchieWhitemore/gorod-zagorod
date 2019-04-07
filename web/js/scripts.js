@@ -45,3 +45,18 @@ if (viewListButton) {
         propertyListElement.classList.remove('properties__list--list');
     });
 }
+
+/* слайдер */
+
+document.querySelector("#myPaperRangeSliderId").addEventListener('updateValues', function (customEvent) {
+    const minAreaInput = document.querySelector('#minAreaInput');
+    const maxAreaInput = document.querySelector('#maxAreaInput');
+    const minAreaLabel = document.querySelector('#minAreaLabel');
+    const maxAreaLabel = document.querySelector('#maxAreaLabel');
+
+    maxAreaInput.value = this.valueMax;
+    minAreaInput.value = this.valueMin;
+    maxAreaLabel.innerText = this.valueMax + ' м2';
+    minAreaLabel.innerText = this.valueMin + ' м2';
+    //console.log(' - current min/max values: ',this.valueMin,this.valueMax)
+});

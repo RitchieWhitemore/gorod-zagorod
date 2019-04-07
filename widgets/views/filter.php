@@ -15,6 +15,8 @@ if (ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id')) {
     $typeAdvertId = 1;
 }
 
+$minArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.minArea', $area['min']['value']);
+$maxArea = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxArea', $area['max']['value']);
 ?>
 
 <section id="form-search" class="form-search">
@@ -50,9 +52,12 @@ if (ArrayHelper::getValue($queryParams, 'AdvertSearch.type_advert_id')) {
     </div>
     <div class="form-search__group form-search__range">
         <label>Площадь</label>
-        <paper-range-slider></paper-range-slider>
-        <span class="form-search__range-result">100 м2</span> - <span
-                class="form-search__range-result">200 м2</span>
+        <paper-range-slider id="myPaperRangeSliderId" min="<?= $area['min']['value']?>" max="<?= $area['max']['value'] ?>" value-min="<?= $minArea ?>" value-max="<?= $maxArea ?>">
+        </paper-range-slider>
+        <span id="minAreaLabel" class="form-search__range-result"><?= $minArea ?> м2</span> - <span
+                id="maxAreaLabel" class="form-search__range-result"><?= $maxArea ?> м2</span>
+        <input id="minAreaInput" hidden name="AdvertSearch[minArea]" value="<?= $minArea ?>">
+        <input id="maxAreaInput" hidden name="AdvertSearch[maxArea]" value="<?= $maxArea ?>">
     </div>
     <div class="form-search__group form-search__range">
         <label>Стоимость</label>

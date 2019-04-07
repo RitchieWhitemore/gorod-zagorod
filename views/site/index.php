@@ -5,6 +5,7 @@
 $this->title = 'Агенство недвижимости Город-Загород';
 $this->params['h1'] = 'Найдем ваш новый дом из тысячи и продадим старый';
 ?>
+<?= \app\widgets\Filter::widget()?>
 <section class="module container">
     <h2 class="module__title">Новые объявления</h2>
     <div class="module__list">
