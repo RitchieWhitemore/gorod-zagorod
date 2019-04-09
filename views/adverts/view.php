@@ -233,40 +233,6 @@ $this->params['h1'] = 'Объявление';
         </div>
     </section>
     <aside class="page-property__aside">
-        <section class="category-nav">
-            <h3 class="category-nav__title">Категории</h3>
-            <ul class="category-nav__list">
-                <li class="category-nav__item">
-                    <a href="properties.html" class="link category-nav__link">
-                        <span class="category-nav__name">Комната</span>
-                        <span class="category-nav__qty">(20)</span>
-                    </a>
-                </li>
-                <li class="category-nav__item">
-                    <a href="properties.html" class="link category-nav__link">
-                        <span class="category-nav__name">1-комнатная квартира</span>
-                        <span class="category-nav__qty">(120)</span>
-                    </a>
-                </li>
-                <li class="category-nav__item">
-                    <a href="properties.html" class="link category-nav__link">
-                        <span class="category-nav__name">2-комнатная квартира</span>
-                        <span class="category-nav__qty">(200)</span>
-                    </a>
-                </li>
-                <li class="category-nav__item">
-                    <a href="properties.html" class="link category-nav__link">
-                        <span class="category-nav__name">3-комнатная квартира</span>
-                        <span class="category-nav__qty">(55)</span>
-                    </a>
-                </li>
-                <li class="category-nav__item">
-                    <a href="properties.html" class="link category-nav__link">
-                        <span class="category-nav__name">Дом</span>
-                        <span class="category-nav__qty">(60)</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
+        <?= \app\widgets\Locations::widget() ?>
     </aside>
 </section>

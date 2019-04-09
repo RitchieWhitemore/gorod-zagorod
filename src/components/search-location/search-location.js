@@ -16,6 +16,7 @@ class SearchLocation extends PolymerElement {
             list-style: none;
             
             background: white;
+            z-index: 99;
          }
          
          .list-names--active {

@@ -54,6 +54,8 @@ class AdvertsController extends \yii\web\Controller
 
         if ($typeAdvert) {
             $requestString .= $typeAdvert->name;
+        } else {
+            $requestString .= 'Купить';
         }
 
         $property = Property::findOne(ArrayHelper::getValue($queryParams, 'AdvertSearch.property_id'));

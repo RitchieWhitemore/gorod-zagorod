@@ -42,7 +42,7 @@ AppAsset::register($this);
                 <a href="<?= Url::home()?>" class="main-menu__link <?= Url::home() === Url::current() ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Главная</li>
                 </a>
-                <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link <?= Url::to(['/adverts']) === Url::current() ? 'main-menu__link--active' : ''?>">
+                <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link <?= strstr(Url::current(), Url::to(['/adverts'])) ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Объявления</li>
                 </a>
                 <a href="<?= Url::to(['/site/about'])?>" class="main-menu__link <?= Url::to(['/site/about']) === Url::current() ? 'main-menu__link--active' : ''?>">
@@ -85,7 +85,7 @@ AppAsset::register($this);
                     <a href="<?= Url::home() ?>" class="footer-menu__link <?= Url::home() === Url::current() ? 'footer-menu__link--active' : ''?>">
                         Главная
                     </a></li>
-                <li class="footer-menu__item <?= Url::to(['/adverts']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                <li class="footer-menu__item <?= strstr(Url::current(), Url::to(['/adverts'])) ? 'footer-menu__link--active' : ''?>">
                     <a href="<?= Url::to(['/adverts']) ?>" class="footer-menu__link">
                         Объявления
                     </a>
