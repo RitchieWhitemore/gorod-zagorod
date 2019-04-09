@@ -8,11 +8,12 @@ use Yii;
  * This is the model class for table "location".
  *
  * @property int $id
+ * @property int $type_location_id
  * @property string $name
  * @property string $name_where
  *
  * @property Advert[] $adverts
- * @property TypeLocation[] $type_location_id
+ * @property TypeLocation[] $typeLocation
  */
 class Location extends \yii\db\ActiveRecord
 {

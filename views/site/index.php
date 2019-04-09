@@ -6,7 +6,8 @@ $this->title = 'Агенство недвижимости Город-Загор�
 $this->params['h1'] = 'Найдем ваш новый дом из тысячи и продадим старый';
 ?>
 <?= \app\widgets\Filter::widget()?>
-<section class="module container">
+<?= \app\widgets\LatestAdverts::widget()?>
+<!--<section class="module container">
     <h2 class="module__title">Новые объявления</h2>
     <div class="module__list">
         <div class="module__item properties__item property-item">
@@ -154,7 +155,7 @@ $this->params['h1'] = 'Найдем ваш новый дом из тысячи �
             </a>
         </div>
     </div>
-</section>
+</section>-->
 <section class="module contact">
     <h2 class="module__title">Контакты</h2>
     <div class="contact__map">

@@ -22,7 +22,7 @@
         <span class="property-item__label property-item__label--buy"><?= $model->typeAdvert->name_type_offer ?></span>
     </div>
     <div class="property-item__content">
-        <h3 class="property-item__title"><?= $model->address ?></h3>
+        <h3 class="property-item__title"><?= $model->location->typeLocation->short_name . ' ' . $model->location->name . ', ' . $model->address ?></h3>
         <p class="property-item__category"><?= $model->property->name ?></p>
         <p class="property-item__description"><?= $model->description ?></p>
         <footer class="property-item__footer">

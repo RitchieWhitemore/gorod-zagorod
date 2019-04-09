@@ -9,6 +9,7 @@ use Yii;
  *
  * @property int $id
  * @property string $name
+ * @property string $short_name
  *
  * @property Location[] $locations
  */
@@ -28,7 +29,8 @@ class TypeLocation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 255],
+            [['name', 'short_name'], 'required'],
+            [['name', 'short_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -38,8 +40,9 @@ class TypeLocation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Тип локации',
+            'id'         => 'ID',
+            'name'       => 'Тип локации',
+            'short_name' => 'Краткое наименование'
         ];
     }
 
