@@ -1,7 +1,12 @@
 <?php
-/* @var $this yii\web\View */
+/**
+ *
+ * @var $this yii\web\View
+ * @var $model \app\models\Advert
+ */
 
-$this->params['h1'] = 'Объявление';
+$this->params['h1'] = $model->fullAddress;
+$this->title = 'Объявление: ' .  $model->fullAddress;
 ?>
 
 <?= \app\widgets\Filter::widget()?>
@@ -10,8 +15,17 @@ $this->params['h1'] = 'Объявление';
         <div class="page-property__content">
             <div class="page-property__image-gallery image-gallery">
                 <div class="image-gallery__main-image">
-                    <img src="images/property1.jpg">
-                    <span class="image-gallery__label image-gallery__label--buy">Продается</span>
+                    <img src="<?= Yii::$app->thumbnail->url($model->mainImagePath, [
+                        'thumbnail' => [
+                            'width' => 855,
+                            'height' => 570,
+                        ],
+                        'placeholder' => [
+                            'width' => 855,
+                            'height' => 570
+                        ]
+                    ])?>" >
+                    <span class="image-gallery__label image-gallery__label--buy"><?= $model->typeAdvert->name_type_offer ?></span>
                     <div class="image-gallery__control">
                         <button type="button" class="image-gallery__button image-gallery__button--prev"></button>
                         <button type="button" class="image-gallery__button image-gallery__button--next"></button>
@@ -26,10 +40,10 @@ $this->params['h1'] = 'Объявление';
                     <li class="image-gallery__item"><img src="images/property3.jpg"></li>
                 </ul>
             </div>
-            <h2 class="page-property__title">3-комнатная квартира, 99 м2</h2>
+            <h2 class="page-property__title"><?= $model->property->name?>, <?= $model->area ?> м2</h2>
             <div class="page-property__row">
-                <p class="page-property__address">г. Александров, ул. Ленина, д. 20, кв. 50</p>
-                <span class="page-property__price">1 200 000 Р</span>
+                <p class="page-property__address"><?= $model->fullAddress?></p>
+                <span class="page-property__price"><?= $model->price?> Р</span>
             </div>
 
             <table class="page-property__table">
@@ -66,12 +80,7 @@ $this->params['h1'] = 'Объявление';
                 </tr>
                 </tbody>
             </table>
-            <p class="page-property__description">
-                Арт. 5474116. Улица Варваринский проезд, 3-х комнатная квартира в двух уровнях. Все комнаты изолированы,
-                хороший ремонт. Индивидуальная планировка, теплые полы, встроенная мебель, два санузла, кондиционеры,
-                южная сторона, вид на центр города. Очень удобное месторасположение, вторая линия от дороги, закрытый
-                двор. Рядом гимназия, городской парк, рынок, до центра 2 остановки.
-            </p>
+            <p class="page-property__description"><?= $model->description ?></p>
         </div>
 
         <div class="page-property__map">
@@ -86,155 +95,6 @@ $this->params['h1'] = 'Объявление';
     <?= \app\widgets\SimilarAdverts::widget([
             'model' => $model,
     ])?>
-    <!--<section class="page-property__module module container">
-        <h2 class="module__title">Похожие объявления</h2>
-        <div class="module__list">
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-            <div class="module__item properties__item property-item">
-                <a class="link" href="property.html">
-                    <div class="property-item__image-wrapper">
-                        <img src="../images/property1.jpg">
-                        <span class="property-item__label property-item__label--buy">Продается</span>
-                    </div>
-                    <div class="property-item__content">
-                        <h3 class="property-item__title">Ул. Ленина, д. 1, кв. 20</h3>
-                        <p class="property-item__category">3-х комнатная квартира</p>
-                        <p class="property-item__description">Продается 3-комнатная квартира в центре города. Состояние
-                            нормальное, жилое. + комнаты изолированные + большая кухня + санузел раздельный ...</p>
-                        <footer class="property-item__footer">
-                            <span class="property-item__area">95 м2</span>
-                            <span class="property-item__price">1 200 000 P</span>
-                        </footer>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>-->
     <aside class="page-property__aside">
         <?= \app\widgets\Locations::widget() ?>
     </aside>

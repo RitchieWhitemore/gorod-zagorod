@@ -16,9 +16,7 @@
                 'width' => 320,
                 'height' => 230
             ]
-        ]);
-
-        ?>" >
+        ])?>" >
         <span class="property-item__label property-item__label--buy"><?= $model->typeAdvert->name_type_offer ?></span>
     </div>
     <div class="property-item__content">

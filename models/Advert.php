@@ -17,6 +17,7 @@ use yii\helpers\ArrayHelper;
  * @property string $description
  * @property string $coordinates
  * @property string $address
+ * @property string $fullAddress
  * @property string $mainImagePath
  * @property string $mainImageUrl
  *
@@ -170,6 +171,11 @@ class Advert extends \yii\db\ActiveRecord
 
 
         return $address;
+    }
+
+    public function getFullAddress()
+    {
+        return $this->location->typeLocation->short_name . ' ' . $this->location->name . ', ' . $this->address;
     }
 
     public function getArea()
