@@ -24,7 +24,7 @@
         <p class="property-item__category"><?= $model->property->name ?></p>
         <p class="property-item__description"><?= $model->description ?></p>
         <footer class="property-item__footer">
-            <span class="property-item__area"><?= $model->area ?> м2</span>
+            <span class="property-item__area"><?= $model->area ?> м<sup>2</sup></span>
             <span class="property-item__price"><?= $model->price ?> P</span>
         </footer>
     </div>

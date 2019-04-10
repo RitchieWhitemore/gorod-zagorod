@@ -40,7 +40,7 @@ $this->title = 'Объявление: ' .  $model->fullAddress;
                     <li class="image-gallery__item"><img src="images/property3.jpg"></li>
                 </ul>
             </div>
-            <h2 class="page-property__title"><?= $model->property->name?>, <?= $model->area ?> м2</h2>
+            <h2 class="page-property__title"><?= $model->property->name?>, <?= $model->area ?> м<sup>2</sup></h2>
             <div class="page-property__row">
                 <p class="page-property__address"><?= $model->fullAddress?></p>
                 <span class="page-property__price"><?= $model->price?> Р</span>
