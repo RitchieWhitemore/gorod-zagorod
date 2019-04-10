@@ -37,7 +37,7 @@ use app\models\Property;
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'coordinates')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'link_map')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->dropDownList($model::getStatusesArray()) ?>
 

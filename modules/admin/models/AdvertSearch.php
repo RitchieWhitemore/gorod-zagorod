@@ -18,7 +18,7 @@ class AdvertSearch extends Advert
     {
         return [
             [['id', 'type_advert_id', 'property_id', 'location_id', 'price', 'status'], 'integer'],
-            [['description', 'coordinates'], 'safe'],
+            [['description'], 'safe'],
         ];
     }
 
@@ -66,8 +66,7 @@ class AdvertSearch extends Advert
             'status'         => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'coordinates', $this->coordinates]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

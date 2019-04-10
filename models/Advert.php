@@ -15,7 +15,8 @@ use yii\helpers\ArrayHelper;
  * @property int $price
  * @property int $status
  * @property string $description
- * @property string $coordinates
+ * @property string $link_map
+ * @property string $linkMapForWidget
  * @property string $address
  * @property string $fullAddress
  * @property string $mainImagePath
@@ -49,7 +50,7 @@ class Advert extends \yii\db\ActiveRecord
         return [
             [['type_advert_id', 'property_id', 'location_id', 'price', 'status'], 'integer'],
             [['description', 'street', 'house', 'apartment'], 'string'],
-            [['coordinates'], 'string', 'max' => 255],
+            [['link_map'], 'string', 'max' => 255],
             [
                 ['location_id'],
                 'exist',
@@ -90,7 +91,7 @@ class Advert extends \yii\db\ActiveRecord
             'location_id'    => 'Локация',
             'price'          => Yii::t('app', 'Price'),
             'description'    => Yii::t('app', 'Description'),
-            'coordinates'    => Yii::t('app', 'Coordinates'),
+            'link_map'    => 'Ссылка на яндекс карту',
             'street'         => 'Улица',
             'house'          => 'Дом',
             'apartment'      => 'Квартира',
@@ -205,6 +206,17 @@ class Advert extends \yii\db\ActiveRecord
 
         return Yii::getAlias('@webroot') . '/images/adverts/' . $this->id . '/' . $main;
 
+    }
+
+    public function getLinkMapForWidget()
+    {
+        $link = 'https://yandex.ru/maps/-/CCU~EEPx';
+
+        if (!empty($this->link_map)) {
+            $link = str_replace('maps', 'map-widget/v1', $this->link_map);
+        }
+
+        return $link;
     }
 
     public static function getStatusesArray()

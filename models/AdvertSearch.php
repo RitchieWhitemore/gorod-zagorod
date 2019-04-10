@@ -25,7 +25,7 @@ class AdvertSearch extends Advert
         return [
             [['id', 'type_advert_id', 'property_id', 'price', 'status', 'minArea', 'maxArea', 'minPrice', 'maxPrice'], 'integer'],
             [['location'], 'string'],
-            [['description', 'location_id', 'coordinates'], 'safe'],
+            [['description', 'location_id'], 'safe'],
         ];
     }
 
@@ -80,8 +80,7 @@ class AdvertSearch extends Advert
         $query->andFilterWhere(['>=', 'price', $this->minPrice]);
         $query->andFilterWhere(['<=', 'price', $this->maxPrice]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'coordinates', $this->coordinates]);
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

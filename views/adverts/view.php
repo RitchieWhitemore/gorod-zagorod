@@ -84,7 +84,7 @@ $this->title = 'Объявление: ' .  $model->fullAddress;
         </div>
 
         <div class="page-property__map">
-            <iframe src="https://yandex.ru/map-widget/v1/-/CCUTF8ZY" frameborder="0"
+            <iframe src="<?= $model->linkMapForWidget?>" frameborder="0"
                     allowfullscreen="true"></iframe>
         </div>
         <div class="page-property__content">
