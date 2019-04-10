@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Advert;
 use app\models\Location;
 use app\models\Property;
 use app\models\TypeAdvert;
@@ -39,7 +40,9 @@ class AdvertsController extends \yii\web\Controller
 
     public function actionView($id)
     {
-        return $this->render('view');
+        $model = Advert::findOne($id);
+
+        return $this->render('view', compact('model'));
     }
 
     private function getRequestString($request)

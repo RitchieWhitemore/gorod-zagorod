@@ -11,7 +11,7 @@ class LatestAdverts extends Widget
 {
     public function init()
     {
-
+        parent::init();
     }
 
     public function run()

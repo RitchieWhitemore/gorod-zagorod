@@ -83,7 +83,10 @@ $this->params['h1'] = 'Объявление';
         </div>
 
     </div>
-    <section class="page-property__module module container">
+    <?= \app\widgets\SimilarAdverts::widget([
+            'model' => $model,
+    ])?>
+    <!--<section class="page-property__module module container">
         <h2 class="module__title">Похожие объявления</h2>
         <div class="module__list">
             <div class="module__item properties__item property-item">
@@ -231,7 +234,7 @@ $this->params['h1'] = 'Объявление';
                 </a>
             </div>
         </div>
-    </section>
+    </section>-->
     <aside class="page-property__aside">
         <?= \app\widgets\Locations::widget() ?>
     </aside>

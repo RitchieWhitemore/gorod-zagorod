@@ -1,12 +1,10 @@
-<section class="module container">
-    <h2 class="module__title">Последние объявления</h2>
-    <div class="module__list">
+<section class="container page-property__module module">
+    <h2 class="module__title">Похожие объявления</h2>
         <?= \yii\widgets\ListView::widget([
             'dataProvider' => $dataProvider,
             'itemView'     => '@app/views/adverts/_advertItem',
             'itemOptions'  => ['class' => 'module__item properties__item property-item'],
             'layout'       => "{items}",
-            'options'      => ['id' => 'property-list', 'class' => 'properties__list'],
+            'options'      => ['class' => 'module__list'],
         ])?>
-    </div>
 </section>
