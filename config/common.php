@@ -22,10 +22,10 @@ return [
             'class'   => 'yii\db\Connection',
             'charset' => 'utf8',
         ],
-        'i18n' => [
+        'i18n'       => [
             'translations' => [
                 'app' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
+                    'class'            => 'yii\i18n\PhpMessageSource',
                     'forceTranslation' => true,
                 ],
             ],
@@ -37,17 +37,19 @@ return [
             'class' => 'yii\log\Dispatcher',
         ],
         'urlManager' => [
-            'class'               => 'yii\web\UrlManager',
-            'enablePrettyUrl'     => true,
-            'showScriptName'      => false,
+            'class'           => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName'  => false,
             //'enableStrictParsing' => true,
-            'rules'               => [
+            'rules'           => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/advert',],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/image',],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'api/location',],
 
-                ''      => 'site/index',
-                'admin' => 'admin/default/index',
+                ''       => 'site/index',
+                'logout' => 'site/logout',
+                'login'  => 'site/login',
+                'admin'  => 'admin/default/index',
 
                 '<_c:[\w\-]+>/<id:\d+>'              => '<_c>/view',
                 '<_c:[\w\-]+>'                       => '<_c>/index',

@@ -9,8 +9,9 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('app', 'NAV_LOGIN');
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['h1'] = 'Авторизация';
 ?>
-<div class="site-login">
+<div class="site-login container">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p><?= Yii::t('app', 'PLEASE_FILL_FIELDS_TO_LOGIN') ?>:</p>
@@ -34,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton( Yii::t('app', 'NAV_LOGIN'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton( Yii::t('app', 'NAV_LOGIN'), ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
             </div>
         </div>
 
