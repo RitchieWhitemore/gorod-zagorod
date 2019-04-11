@@ -9,6 +9,7 @@ use app\models\TypeAdvert;
 use app\models\AdvertSearch;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\web\NotFoundHttpException;
 
 class AdvertsController extends \yii\web\Controller
 {
@@ -41,6 +42,10 @@ class AdvertsController extends \yii\web\Controller
     public function actionView($id)
     {
         $model = Advert::find()->where(['id' => $id])->active()->one();
+
+        if (!$model) {
+            throw new NotFoundHttpException();
+        }
 
         return $this->render('view', compact('model'));
     }
