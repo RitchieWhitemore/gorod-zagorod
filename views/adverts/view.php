@@ -5,6 +5,10 @@
  * @var $model \app\models\Advert
  */
 
+$bundle = \app\assets\WebComponentsAsset::register($this);
+
+$this->registerJsFile("$bundle->baseUrl/image-gallery/image-gallery.js", ['type' => 'module']);
+
 $this->params['h1'] = $model->fullAddress;
 $this->title = 'Объявление: ' . $model->fullAddress;
 ?>
@@ -13,33 +17,19 @@ $this->title = 'Объявление: ' . $model->fullAddress;
 <section class="page-property container">
     <div class="page-property__content-wrapper">
         <div class="page-property__content">
-            <div class="page-property__image-gallery image-gallery">
-                <div class="image-gallery__main-image">
-                    <img src="<?= Yii::$app->thumbnail->url($model->mainImagePath, [
-                        'thumbnail'   => [
-                            'width'  => 855,
-                            'height' => 570,
-                        ],
-                        'placeholder' => [
-                            'width'  => 855,
-                            'height' => 570
-                        ]
-                    ]) ?>">
-                    <span class="image-gallery__label image-gallery__label--buy"><?= $model->typeAdvert->name_type_offer ?></span>
-                    <div class="image-gallery__control">
-                        <button type="button" class="image-gallery__button image-gallery__button--prev"></button>
-                        <button type="button" class="image-gallery__button image-gallery__button--next"></button>
-                    </div>
-                </div>
-                <ul class="image-gallery__list">
-                    <li class="image-gallery__item image-gallery__item--active"><img src="images/property1.jpg"></li>
-                    <li class="image-gallery__item"><img src="images/property2.jpg"></li>
-                    <li class="image-gallery__item"><img src="images/property3.jpg"></li>
-                    <li class="image-gallery__item"><img src="images/property1.jpg"></li>
-                    <li class="image-gallery__item"><img src="images/property2.jpg"></li>
-                    <li class="image-gallery__item"><img src="images/property3.jpg"></li>
-                </ul>
-            </div>
+            <image-gallery owner-id="<?=$model->id?>" thumbnails-url="<?= Yii::$app->thumbnail->url($model->mainImagePath, [
+                'thumbnail'   => [
+                    'width'  => 855,
+                    'height' => 570,
+                ],
+                'placeholder' => [
+                    'width'  => 855,
+                    'height' => 570
+                ]
+            ]) ?>" type-advert="<?= $model->typeAdvert->name_type_offer ?>">
+
+            </image-gallery>
+
             <h2 class="page-property__title"><?= $model->property->name ?>, <?= $model->area ?> м<sup>2</sup></h2>
             <div class="page-property__row">
                 <p class="page-property__address"><?= $model->fullAddress ?></p>
