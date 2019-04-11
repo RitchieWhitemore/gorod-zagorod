@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\query\AdvertQuery;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -225,5 +226,10 @@ class Advert extends \yii\db\ActiveRecord
             self::STATUS_ACTIVE   => 'Активен',
             self::STATUS_INACTIVE => 'Не активен',
         ];
+    }
+
+    public static function find()
+    {
+        return new AdvertQuery(get_called_class());
     }
 }

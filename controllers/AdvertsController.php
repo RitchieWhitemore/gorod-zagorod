@@ -19,7 +19,7 @@ class AdvertsController extends \yii\web\Controller
         $searchModel = new AdvertSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $requestString = $this->getRequestString($request);
+        $requestString = $this->getRequestString();
 
         if ($request->get('page-size')) {
             $dataProvider->pagination->pageSize = $request->get('page-size');
@@ -40,12 +40,12 @@ class AdvertsController extends \yii\web\Controller
 
     public function actionView($id)
     {
-        $model = Advert::findOne($id);
+        $model = Advert::find()->where(['id' => $id])->active()->one();
 
         return $this->render('view', compact('model'));
     }
 
-    private function getRequestString($request)
+    private function getRequestString()
     {
 
         $requestString = '';

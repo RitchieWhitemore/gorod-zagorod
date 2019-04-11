@@ -18,7 +18,7 @@ class LatestAdverts extends Widget
     {
 
         $dataProvider = new ActiveDataProvider([
-           'query' =>  Advert::find()->orderBy(['id' => SORT_DESC])->limit('8'),
+           'query' =>  Advert::find()->active()->orderBy(['id' => SORT_DESC])->limit('8'),
         ]);
 
         return $this->render('latest_adverts', ['dataProvider' => $dataProvider]);

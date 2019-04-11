@@ -29,7 +29,7 @@ class SimilarAdverts extends Widget
                 'type_advert_id' => $this->model->type_advert_id,
                 'location_id' => $this->model->location_id,
                 'property_id' => $this->model->property_id,
-            ])->andWhere(['!=', 'id', $this->model->id])->orderBy(['id' => SORT_DESC])->limit('8'),
+            ])->andWhere(['!=', 'id', $this->model->id])->orderBy(['id' => SORT_DESC])->active()->limit('8'),
         ]);
 
         return $this->render('similar_adverts', ['dataProvider' => $dataProvider]);
