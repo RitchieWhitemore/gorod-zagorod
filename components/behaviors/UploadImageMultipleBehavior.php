@@ -2,88 +2,62 @@
 
 namespace app\components\behaviors;
 
+use app\models\Image;
+use Yii;
+use yii\base\Behavior;
+use yii\base\Exception;
 use yii\db\ActiveRecord;
+use yii\helpers\FileHelper;
+use yii\validators\Validator;
 use yii\web\UploadedFile;
 
 /**
  * Class UploadImageBehavior
  * @package app\components\behaviors
  *
+ * @property Image $owner
+ *
  */
-class UploadImageMultipleBehavior extends UploadImageBehavior
+class UploadImageMultipleBehavior extends Behavior
 {
     /**
      * @var UploadedFile
      */
-    public $goodIdField = 'good_id';
+    public $imageFile;
 
+    public $uploadCatalog;
 
     public function events()
     {
         return [
             ActiveRecord::EVENT_BEFORE_VALIDATE => 'beforeValidate',
             ActiveRecord::EVENT_BEFORE_INSERT   => 'beforeInsert',
-            ActiveRecord::EVENT_AFTER_INSERT    => 'afterInsert',
-            ActiveRecord::EVENT_BEFORE_UPDATE   => 'beforeUpdate',
-            ActiveRecord::EVENT_AFTER_UPDATE    => 'afterUpdate',
             ActiveRecord::EVENT_BEFORE_DELETE   => 'beforeDelete',
         ];
     }
 
-    public function init()
+    public function attach($owner)
     {
-        parent::init();
+        /**
+         * @var $owner ActiveRecord
+         */
+
+        parent::attach($owner);
+
+        $validator = Validator::createValidator('file', $owner, ['imageFile'], ['skipOnEmpty' => true, 'extensions' => 'png, jpg']);
+        $owner->validators[] = $validator;
+    }
+
+    public function beforeValidate()
+    {
+        $this->imageFile = UploadedFile::getInstance($this->owner, 'imageFile');
     }
 
     public function beforeInsert()
     {
-        $this->owner->file_name = 'image';
-        return true;
-    }
-
-    public function afterInsert()
-    {
-        if ($this->imageFile != null) {
-            if ($this->upload()) {
-                $this->owner->save(false);
-            }
+        if ($this->imageFile) {
+            $this->upload();
         }
-    }
-
-    public function afterUpdate()
-    {
-        if ($this->imageFile != null) {
-
-            if ($this->upload()) {
-                $this->owner->save(false);
-            };
-        }
-    }
-
-    protected function createFileName()
-    {
-
-        $id = $this->_ownerId;
-
-        $randomNumber = time()+rand(0,1000);
-
-        $fileName = mb_strtolower($this->catalog . '_' . $id . '_' . $randomNumber);
-
-        $this->owner->{$this->fileNameField} = $fileName . '.' . $this->imageFile->extension;
-
-        return $this->owner->{$this->fileNameField};
-    }
-
-    public function getPathImg()
-    {
-
-        if ($this->_ownerId == null) {
-            $this->_ownerId = $this->owner->{$this->ownerIdField};
-        }
-
-        $path = $this->_path . '/' . $this->_ownerId . '/';
-
-        return $path;
     }
 
     public function beforeDelete()
@@ -91,9 +65,27 @@ class UploadImageMultipleBehavior extends UploadImageBehavior
         return $this->removeOldImage();
     }
 
-    public function removeOldImage()
+    public function upload()
     {
-        $filename = $this->_serverPath . $this->getPathImg() . $this->owner->{$this->fileNameField};
+        $fileName = $this->generateFileName();
+
+        $this->owner->file_name = $fileName . '.' . $this->imageFile->extension;
+
+        $file = $this->createPathImg() . $this->owner->file_name;
+
+        return $this->imageFile->saveAs($file);
+    }
+
+    protected function getPathImg()
+    {
+        $path = '/images/adverts/' . $this->owner->advert_id . '/';
+
+        return $path;
+    }
+
+    protected function removeOldImage()
+    {
+        $filename = Yii::getAlias('@app/web') . $this->getPathImg() . $this->owner->file_name;
 
         if (file_exists($filename)) {
             return unlink($filename);
@@ -102,9 +94,26 @@ class UploadImageMultipleBehavior extends UploadImageBehavior
         return false;
     }
 
-    public function upload()
+    protected function createPathImg()
     {
-        return $this->imageFile->saveAs($this->createPathImg() . $this->createFileName());
+        $pathBeforeImage = Yii::getAlias('@app/web'). $this->getPathImg();
+
+        try {
+            FileHelper::createDirectory($pathBeforeImage);
+        } catch (Exception $e) {
+        }
+
+        return $pathBeforeImage;
+    }
+
+    protected function generateFileName()
+    {
+
+        $randomNumber = time()+rand(0,1000);
+
+        $fileName = mb_strtolower($this->uploadCatalog . '_' . $this->owner->advert_id . '_' . $randomNumber);
+
+        return $fileName;
     }
 
 }

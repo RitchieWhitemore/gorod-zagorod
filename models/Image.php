@@ -30,8 +30,7 @@ class Image extends \yii\db\ActiveRecord
         return [
             [
                 'class'         => UploadImageMultipleBehavior::className(),
-                'fileNameField' => 'file_name',
-                'catalog'       => 'adverts',
+                'uploadCatalog' => 'adverts',
             ],
         ];
     }
@@ -46,8 +45,13 @@ class Image extends \yii\db\ActiveRecord
             [['advert_id'], 'required'],
             [['advert_id', 'main'], 'integer'],
             [['file_name'], 'string', 'max' => 255],
-            [['advert_id'], 'exist', 'skipOnError' => true, 'targetClass' => Advert::className(), 'targetAttribute' => ['advert_id' => 'id']],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [
+                ['advert_id'],
+                'exist',
+                'skipOnError'     => true,
+                'targetClass'     => Advert::className(),
+                'targetAttribute' => ['advert_id' => 'id']
+            ],
         ];
     }
 
@@ -57,10 +61,10 @@ class Image extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id'        => 'ID',
             'file_name' => 'Имя файла',
             'advert_id' => 'Номер объявления',
-            'main' => 'Главная',
+            'main'      => 'Главная',
         ];
     }
 
