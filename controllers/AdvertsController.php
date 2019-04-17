@@ -62,8 +62,6 @@ class AdvertsController extends \yii\web\Controller
 
         if ($typeAdvert) {
             $requestString .= $typeAdvert->name;
-        } else {
-            $requestString .= 'Купить';
         }
 
         $property = Property::findOne(ArrayHelper::getValue($queryParams, 'AdvertSearch.property_id'));
@@ -75,7 +73,7 @@ class AdvertsController extends \yii\web\Controller
         $location = Location::findOne(['name' => ArrayHelper::getValue($queryParams, 'AdvertSearch.location')]);
 
         if ($location) {
-            $requestString .= ' в ' . $location->name_where;
+            $requestString .= ' в ' . $location->typeLocation->short_name . ' ' .$location->name_where;
         }
 
 

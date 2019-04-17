@@ -17,10 +17,10 @@ $this->params['h1'] = 'Поиск недвижимости';
 <section class="properties container">
     <header class="properties__header">
         <?php if ($requestString == '') : ?>
-            <h2 class="properties__title">Найдено <?= count($model->getTotalCount()) ?> предложений.
+            <h2 class="properties__title">Найдено <?= $model->getCount() ?> предложений.
             </h2>
         <?php else : ?>
-            <h2 class="properties__title">Найдено <?= count($model->getTotalCount()) ?> предложений по запросу:<br>
+            <h2 class="properties__title">Найдено <?= $model->getCount() ?> предложений по запросу:<br>
                 <span class="properties__request">"<?= $requestString ?>"</span>
             </h2>
         <?php endif; ?>
