@@ -182,7 +182,12 @@ class Advert extends \yii\db\ActiveRecord
 
     public function getFullAddress()
     {
-        return $this->location->typeLocation->short_name . ' ' . $this->location->name . ', ' . $this->address;
+        $fullAddress = $this->location->typeLocation->short_name . ' ' . $this->location->name;
+
+        if ($this->address) {
+            $fullAddress .= ', ' . $this->address;
+        }
+        return $fullAddress;
     }
 
     public function getArea()
