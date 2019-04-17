@@ -32,7 +32,7 @@ class ImageGallery extends PolymerElement {
                 </div>
            <iron-ajax id="ajax"
                        auto
-                       url="/api/advert/{{ownerId}}?expand=images"
+                       url="/api/adverts/{{ownerId}}?expand=images"
                        handle-as="json"
                        on-response="handleResponse"
                        last-response="{{response}}"
@@ -51,7 +51,9 @@ class ImageGallery extends PolymerElement {
     }
 
     _changeCurrentImage() {
-        this.$.currentImage.src = '/images/adverts/' + this.ownerId + '/' + this.images[this.currentIndexImage].file_name;
+        if (this.images.length) {
+            this.$.currentImage.src = '/images/adverts/' + this.ownerId + '/' + this.images[this.currentIndexImage].file_name;
+        }
     }
 
     constructor() {
@@ -59,7 +61,7 @@ class ImageGallery extends PolymerElement {
     }
 
     handleResponse() {
-        this.images = this.response[0].images;
+        this.images = this.response.images;
     }
 
     nextImage() {

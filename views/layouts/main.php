@@ -18,7 +18,12 @@ AppAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-
+    <script>
+        // Force all polyfills on
+        if (window.customElements) window.customElements.forcePolyfill = true;
+        ShadyDOM = { force: true };
+        ShadyCSS = { shimcssproperties: true};
+    </script>
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="/node_modules/web-animations-js/web-animations-next.min.js"></script>
     <script type="module">
@@ -45,10 +50,10 @@ AppAsset::register($this);
                 <a href="<?= Url::to(['/adverts'])?>" class="main-menu__link <?= strstr(Url::current(), Url::to(['/adverts'])) ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Объявления</li>
                 </a>
-                <a href="<?= Url::to(['/site/about'])?>" class="main-menu__link <?= Url::to(['/site/about']) === Url::current() ? 'main-menu__link--active' : ''?>">
+                <a href="<?= Url::to(['/about'])?>" class="main-menu__link <?= strstr(Url::current(), Url::to(['/about'])) ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">О компании</li>
                 </a>
-                <a href="<?= Url::to(['/site/contact'])?>" class="main-menu__link <?= Url::to(['/site/contact']) === Url::current() ? 'main-menu__link--active' : ''?>">
+                <a href="<?= Url::to(['/contact'])?>" class="main-menu__link <?= strstr(Url::current(), Url::to(['/contact'])) ? 'main-menu__link--active' : ''?>">
                     <li class="main-menu__item">Контакты</li>
                 </a>
             </ul>
@@ -90,13 +95,13 @@ AppAsset::register($this);
                         Объявления
                     </a>
                 </li>
-                <li class="footer-menu__item <?= Url::to(['/site/about']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                <li class="footer-menu__item <?= strstr(Url::current(), Url::to(['/about'])) ? 'footer-menu__link--active' : ''?>">
                     <a href="<?= Url::to(['/site/about']) ?>" class="footer-menu__link">
 
                         О Компании
 
                     </a></li>
-                <li class="footer-menu__item <?= Url::to(['/site/contact']) === Url::current() ? 'footer-menu__link--active' : ''?>">
+                <li class="footer-menu__item <?= strstr(Url::current(), Url::to(['/contact'])) ? 'footer-menu__link--active' : ''?>">
                     <a href="<?= Url::to(['/site/contact'])?>" class="footer-menu__link">
 
                         Контакты

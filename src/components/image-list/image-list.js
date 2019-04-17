@@ -39,7 +39,7 @@ class ImageList extends PolymerElement {
       </style>
       <iron-ajax id="ajax"
                 
-                   url="/api/advert/{{ownerId}}?expand=images"
+                   url="/api/adverts/{{ownerId}}?expand=images"
                    handle-as="json"
                    on-response="handleResponse"
                    last-response="{{response}}"
@@ -80,15 +80,12 @@ class ImageList extends PolymerElement {
 
     constructor() {
         super();
-
-  /*      const buttonSave = document.querySelector('#buttonSave');
-        buttonSave.addEventListener('click', this.save.bind(this));*/
     }
 
      handleResponse() {
          this.resp = [];
          this.$.domRepeat.render();
-         this.resp = this.response[0].images;
+         this.resp = this.response.images;
 
      }
 

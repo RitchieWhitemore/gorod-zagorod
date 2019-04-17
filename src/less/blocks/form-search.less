@@ -112,6 +112,7 @@
 
 .form-search__input {
   padding: 13px;
+  padding-bottom: 9px;
   display: block;
   border: 1px solid white;
   background-color: transparent;
@@ -124,13 +125,21 @@
 
   @media @desktop-widths {
     font-size: 16px;
+    line-height: 16px;
   }
 
   & option {
     background-color: white;
     color: black;
     font-size: 13px;
+    line-height: 13px;
   }
+}
+
+.form-search__property-wrapper .form-search__input {
+  border-radius: unset;
+  height: 48px;
+  background-color: transparent;
 }
 
 .form-search__city-wrapper {

@@ -92,13 +92,18 @@ class Advert extends \yii\db\ActiveRecord
             'location_id'    => 'Локация',
             'price'          => Yii::t('app', 'Price'),
             'description'    => Yii::t('app', 'Description'),
-            'link_map'    => 'Ссылка на яндекс карту',
+            'link_map'       => 'Ссылка на яндекс карту',
             'street'         => 'Улица',
             'house'          => 'Дом',
             'apartment'      => 'Квартира',
             'status'         => 'Статус',
             'address'        => 'Адрес',
         ];
+    }
+
+    public function extraFields()
+    {
+        return ['images'];
     }
 
     /**

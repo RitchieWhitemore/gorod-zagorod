@@ -64,7 +64,7 @@ $maxPrice = ArrayHelper::getValue($queryParams, 'AdvertSearch.maxPrice', $price[
     </div>
     <div class="form-search__group form-search__range">
         <label>Стоимость</label>
-        <paper-range-slider id="paperRangeSliderPrice" step='1000' min="<?= $price['min']['price']?>" max="<?= $price['max']['price'] ?>" value-min="<?= $minPrice ?>" value-max="<?= $maxPrice ?>"></paper-range-slider>
+        <paper-range-slider id="paperRangeSliderPrice" step="1000" min="<?= $price['min']['price']?>" max="<?= $price['max']['price'] ?>" value-min="<?= $minPrice ?>" value-max="<?= $maxPrice ?>"></paper-range-slider>
         <span id="minPriceLabel" class="form-search__range-result"><?= $minPrice ?> Р</span> - <span
                 id="maxPriceLabel" class="form-search__range-result"><?= $maxPrice ?> Р</span>
         <input id="minPriceInput" hidden name="AdvertSearch[minPrice]" value="<?= $minPrice ?>">
