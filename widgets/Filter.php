@@ -18,7 +18,7 @@ class Filter extends Widget
 
     public function run()
     {
-        $property = Property::find()->select(['name', 'id'])->indexBy('id')->column();
+        $property = Property::find()->select(['name', 'id'])->orderBy('name')->indexBy('id')->column();
 
         $typeAdvert = TypeAdvert::find()->select(['name', 'id'])->indexBy('id')->column();
 

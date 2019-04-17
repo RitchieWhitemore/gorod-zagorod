@@ -65,4 +65,9 @@ class Location extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TypeLocation::className(), ['id' => 'type_location_id']);
     }
+
+    public function getLocationAsArray()
+    {
+        return self::find()->select(['name', 'id'])->orderBy('name')->indexBy('id')->column();
+    }
 }

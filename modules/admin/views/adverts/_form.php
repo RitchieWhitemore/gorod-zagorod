@@ -17,9 +17,9 @@ use app\models\Property;
 
     <?= $form->field($model, 'type_advert_id')->dropDownList(TypeAdvert::find()->select(['name', 'id'])->indexBy('id')->column())?>
 
-    <?= $form->field($model, 'property_id')->dropDownList(Property::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+    <?= $form->field($model, 'property_id')->dropDownList($model->property->getPropertyAsArray()) ?>
 
-    <?= $form->field($model, 'location_id')->dropDownList(Location::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+    <?= $form->field($model, 'location_id')->dropDownList($model->location->getLocationAsArray()) ?>
 
     <div class="row">
         <div class="col-sm-4">

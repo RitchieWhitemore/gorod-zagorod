@@ -51,4 +51,10 @@ class Property extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Advert::className(), ['property_id' => 'id']);
     }
+
+    public function getPropertyAsArray()
+    {
+        return self::find()->select(['name', 'id'])->orderBy('name')->indexBy('id')->column();
+    }
+
 }
